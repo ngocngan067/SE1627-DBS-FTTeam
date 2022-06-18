@@ -1,0 +1,623 @@
+/************************************ BODY *********************************************/
+.container__home {
+    width: 100%;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    padding-left: 5%;
+    padding-right: 5%;
+    position: relative;
+}
+
+.container__home .content--home {
+    margin-left: 10%;
+    animation: moveright 1s linear 1;
+    animation-delay: 0.6s;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+    padding-top: 15%;
+}
+
+@keyframes moveright {
+    0% {
+        transform: translateX(-100px);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateX(0);
+        visibility: visible;
+    }
+}
+
+@keyframes movedown {
+    0% {
+        transform: translateY(-100px);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateY(0);
+        visibility: visible;
+    }
+}
+
+.container__home .content--home h1 {
+    font-size: 60px;
+    font-weight: 100;
+    margin-top: 24px;
+    margin-bottom: 15px;
+    color: #232d60;
+}
+
+.container__home .content--home p {
+    font-size: 20px;
+    color: #6a7199;
+}
+
+.container__home .content--home .btn--login {
+    display: inline-block;
+    background: linear-gradient(45deg, #87adfe, #ff77cd);
+    border-radius: 6px;
+    padding: 10px 20px;
+    color: #fff;
+    box-shadow: 3px 8px 22px rgba(94, 28, 68, 0.15);
+}
+
+.container__home .doctor-img {
+    height: 90%;
+    position: absolute;
+    bottom: 0;
+    right: 160px;
+    animation: zoomin 1s linear 1;
+    animation-delay: 1s;
+    visibility: hidden;
+    animation-fill-mode: forwards;
+}
+
+@keyframes zoomin {
+    0% {
+        transform: scale(0.5);
+        visibility: visible;
+    }
+
+    100% {
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+
+@keyframes moveup {
+    0% {
+        transform: translateY(100px) rotate(-90deg);
+        visibility: visible;
+    }
+
+    100% {
+        transform: translateY(0) rotate(-90deg);
+        visibility: visible;
+    }
+}
+
+header .header__action .header__action-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .header__action-user .user-avatar {
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    border: 1px #d4d4d4 solid;
+    overflow: hidden;
+}
+
+header .user-avatar img {
+    width: 100%;
+}
+
+@media screen and (max-width: 1400px) {
+    .container__home--responsive .content--home h1 {
+        font-size: 45px !important;
+        width: 25rem !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        height: 70% !important;
+        right: 110px !important;
+        bottom: 20% !important;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .container__home--responsive .content--home h1 {
+        font-size: 35px !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        right: 90px !important;
+    }
+}
+
+@media screen and (max-width: 1075px) {
+    .container__home--responsive .content--home h1 {
+        font-size: 30px !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        right: 40px !important;
+    }
+
+    .container__home--responsive .content--home p {
+        font-size: 18px !important;
+    }
+}
+
+@media screen and (max-width: 980px) {
+    .container__home--responsive .content--home h1 {
+        width: 23rem !important;
+    }
+
+    .container__home--responsive .content--home {
+        margin-left: 10% !important;
+        padding-top: 20% !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        right: 10px !important;
+        height: 60% !important;
+        bottom: 32% !important;
+    }
+}
+
+@media screen and (max-width: 851px) {
+    .container__home--responsive {
+        justify-content: center;
+        align-self: center;
+        flex-direction: column-reverse;
+        padding-left: 5% !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        bottom: 6% !important;
+        right: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .container__home--responsive .content--home {
+        margin-left: 0 !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 65% !important;
+        margin-left: 0 !important;
+    }
+
+    .container__home--responsive .content--home h1 {
+        width: 28rem !important;
+        text-align: center;
+    }
+
+    .container__home--responsive .content--home p {
+        text-align: center;
+        width: 24rem !important;
+    }
+}
+
+@media screen and (max-width: 750px) {
+    .container__home--responsive .content--home {
+        padding-top: 72% !important;
+    }
+
+    .container__home--responsive .content--home h1 {
+        font-size: 28px !important;
+    }
+
+    .container__home--responsive .content--home p {
+        font-size: 15px !important;
+    }
+}
+
+@media screen and (max-width: 660px) {
+    .container__home--responsive .doctor-img {
+        bottom: 7% !important;
+        height: 58% !important;
+    }
+
+    .container__home--responsive .content--home {
+        padding-top: 82% !important;
+    }
+}
+
+@media screen and (max-width: 592px) {
+    .container__home--responsive {
+        justify-content: center;
+        align-self: center;
+        flex-direction: column-reverse;
+        padding-left: 5% !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        bottom: 5% !important;
+        right: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+
+    .container__home--responsive .content--home {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 85% !important;
+    }
+
+    .container__home--responsive .content--home h1 {
+        width: 28rem !important;
+        text-align: center;
+    }
+
+    .container__home--responsive .content--home p {
+        text-align: center;
+        width: 18rem !important;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .container__home--responsive .content--home {
+        padding-top: 100% !important;
+    }
+}
+
+@media screen and (max-width: 440px) {
+    .container__home--responsive .content--home {
+        padding-top: 122% !important;
+    }
+
+    .container__home--responsive .doctor-img {
+        bottom: 20% !important;
+        height: 45% !important;
+    }
+
+    .container__home--responsive .content--home h1 {
+        font-size: 24px !important;
+        width: 22rem !important;
+        font-size: 22px !important;
+    }
+
+    .container__home--responsive .content--home p {
+        width: 18rem !important;
+        font-size: 13px !important;
+    }
+}
+
+@media screen and (max-width: 349px) {
+    .container__home--responsive .content--home h1 {
+        width: 20rem !important;
+    }
+
+    .container__home--responsive .content--home p {
+        width: 16rem !important;
+    }
+}
+
+/************************************ END BODY *********************************************/
+
+/************************************ DENTAL CLINIC INFORMATION *********************************************/
+.clinic--infor {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.clinic--infor .card {
+    border: none;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    transition: all .5s;
+}
+
+.clinic--infor .card:hover {
+    margin-top: -10px;
+}
+
+.clinic--infor .card .card-content a {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+.clinic--infor .card i,
+h1 {
+    font-size: 2.5rem;
+    color: #7A41D9;
+}
+
+.clinic--infor .card h3 {
+    color: #232d60;
+}
+
+.clinic--infor .card p {
+    color: #6a7199;
+}
+
+
+.clinic--infor .card .detal--btn {
+    position: absolute;
+    bottom: 25px;
+    width: 9rem;
+    height: 52px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    transition: all .5s;
+}
+
+.clinic--infor .card:hover .detal--btn {
+    background: linear-gradient(to right, #d0368a 20%, #708ad4 80%);
+}
+
+.clinic--infor .card .detal--btn a {
+    transition: all .5s;
+    color: #232d60;
+}
+
+.clinic--infor .card:hover .detal--btn a {
+    color: #fff;
+}
+
+/************************************ END DENTAL CLINIC INFORMATION *********************************************/
+
+/************************************ OUR SERVICES *********************************************/
+.our__services {
+    background: #00c0d3;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.our__services--title {
+    text-align: center;
+    color: #7A41D9;
+    text-transform: uppercase;
+    padding: 40px 0;
+    font-size: 45px;
+    font-weight: 700;
+}
+
+.our__services .service--box {
+    height: 28rem;
+    width: 20.5rem;
+    border-radius: 5px;
+    border: none;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    transition: transform 0.5s;
+}
+
+.our__services .service--box:hover {
+    transform: scale(1.1);
+}
+
+.our__services .box-body {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.our__services .box-body h4 {
+    color: #232d60;
+}
+
+.our__services .box-body p {
+    color: #6a7199;
+}
+
+/************************************ END OUR SERVICES *********************************************/
+
+/************************************ SPECIALIZED TEAM *********************************************/
+.specialized {
+    height: 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.specialized .specialized--contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 70px;
+    height: 100vh;
+}
+
+.specialized .specialized--title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.specialized .specialized--title h4 {
+    color: #bc74a5;
+}
+
+.specialized .specialized--content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 50px;
+    position: relative;
+}
+
+.specialized .specialized--content p {
+    text-align: center;
+    position: relative;
+    color: #6a7199;
+    line-height: 28px;
+}
+
+.specialized .specialized--content p::before {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 40%;
+    background-color: #bc74a5;
+    top: -40px;
+    right: 30%;
+    border-radius: 10px;
+}
+
+.specialized .specialized--content p::after {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 40%;
+    background-color: #bc74a5;
+    bottom: -40px;
+    left: 30%;
+    border-radius: 10px;
+}
+
+.specialized .specialized--content i:first-child {
+    position: absolute;
+    left: 2rem;
+    top: -15px;
+    color: #6a7199;
+}
+
+
+.specialized .specialized--content i:last-child {
+    position: absolute;
+    right: 1rem;
+    bottom: 4px;
+    color: #6a7199;
+}
+
+/************************************ END SPECIALIZED TEAM *********************************************/
+
+/************************************ DOCTOR TEAM *********************************************/
+.doctorTeam {
+    margin-top: -8%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.doctorTeam .doctor--box {
+    height: 44rem;
+    width: 21rem;
+    border-radius: 5px;
+    border: none;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    transition: transform 0.5s;
+}
+
+.doctorTeam .doctor--box img {
+    height: 20rem;
+    object-fit: cover;
+}
+
+.doctorTeam .doctor-body {
+    position: relative;
+}
+
+.doctorTeam .doctor-body h3 {
+    position: relative;
+    margin-bottom: 35px;
+    color: #232d60;
+}
+
+.doctorTeam .doctor-body h3::after {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 23%;
+    background-color: #bc74a5;
+    bottom: -55%;
+    left: 0;
+    border-radius: 10px;
+}
+
+.doctorTeam .doctor-body small {
+    font-size: 18px;
+    color: #6a7199;
+}
+
+.doctorTeam .doctor-body p {
+    margin-top: 18px;
+}
+
+.doctorTeam .doctor-body {
+    background: rgba(242, 242, 242, 1);
+}
+
+.doctorTeam .card-social {
+    position: absolute;
+    bottom: 10px;
+}
+
+.card-social .social-link {
+    display: inline-block;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+    padding-right: 0.5em;
+}
+
+.card-social .social-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+}
+
+/************************************ END DOCTOR TEAM *********************************************/
+
+/************************************ LIST TOOTH *********************************************/
+.listTooth{
+    margin: 5rem 0;
+}
+
+.listTooth .service-box{
+    margin-bottom: 3rem;
+}
+
+.listTooth .inner-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+
+}
+
+.listTooth .inner-content .content{
+    text-align: center;
+}
+
+/************************************ END LIST TOOTH *********************************************/

@@ -1,0 +1,338 @@
+/************************** ABOUT US BG  **************************/
+.aboutUs--img{
+    height: 83vh;
+}
+
+.aboutUs-bg{
+    position: relative;
+}
+
+/* 545436 */
+
+.aboutUs--content{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+}
+
+.aboutUs--content h5{
+    margin-bottom: 20px;
+    border-bottom: 5px solid;
+    padding-bottom: 10px;
+    width: 100px;
+    font-size: 20px;
+}
+
+.aboutUs--content h1{
+    font-size: 60px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.aboutUs--content p{
+    font-size: 20px;
+    margin-bottom: 35px;
+}
+
+.aboutUs--content button{
+    color: #fff;
+    font-weight: 500;
+    width: 11rem;
+    height: 45px;
+}
+
+.aboutUs--content .btn-co1{
+    background-color: #00b3cc;
+    margin-right: 10px;
+    width: 13rem;
+}
+
+.aboutUs--content .btn-co2{
+    background-color: #005b88;
+}
+
+/************************************ END ABOUT US BG *********************************************/
+
+/************************** ABOUT US  **************************/
+.aboutUs h6 {
+    color: #bc74a5;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.aboutUs h2 {
+    color: #7A41D9;
+    font-size: 45px;
+    font-weight: 800;
+    margin-bottom: 2rem;
+}
+
+.aboutUs {
+    padding: 3rem 0 0 0;
+}
+
+.aboutUs .aboutUs__content {
+    margin-left: -3rem;
+}
+
+.aboutUs .aboutUs__content .aboutUs--title {
+    padding: 8px 5px 8px 35px;
+}
+
+.aboutUs .aboutUs__content .aboutUs--title p {
+    font-size: 18px;
+    line-height: 25px;
+    margin: 1rem 0;
+}
+
+.aboutUs .aboutUs__content .list--check {
+    padding-left: 0;
+}
+
+.aboutUs .aboutUs__content .list--check .list {
+    list-style-type: none;
+    display: flex;
+    padding: 8px 5px 8px 30px;
+}
+
+.aboutUs .list--check .list li {
+    font-size: 18px;
+}
+
+.aboutUs .aboutUs__content .list--check .list i {
+    font-size: 24px;
+    color: #f55f8d;
+    margin-right: 1rem;
+}
+
+.aboutUs .aboutUs__content button {
+    margin-left: 2rem;
+}
+
+.aboutUs .aboutUs__img-overflow {
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 14%;
+}
+
+.aboutUs .gradient-btn {
+    width: 150px;
+    height: 55px;
+    border: none;
+    border-radius: 3rem;
+    background-image: linear-gradient(to right, #d0368a 20%, #708ad4 80%);
+    color: #fff;
+    font-weight: 500;
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.aboutUs .gradient-btn::after,
+.aboutUs .gradient-btn::before {
+    content: "";
+    z-index: -1;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    width: 1.25em;
+}
+
+.aboutUs .gradient-btn::after {
+    transform: translate3d(-786%, 0, 0) rotate(35deg);
+}
+
+.aboutUs .gradient-btn:hover::after {
+    transition: transform 0.45s ease-in-out;
+    transform: translate3d(200%, 0, 0) rotate(35deg);
+}
+
+.aboutUs .gradient-btn::before {
+    transform: translate3d(695%, 0, 0) rotate(35deg);
+}
+
+.aboutUs .gradient-btn:not(:hover)::before {
+    transition: transform 0.45s ease-in-out;
+    transform: translate3d(-310%, 0, 0) rotate(35deg);
+}
+
+.aboutUs .gradient-btn:hover {
+    background: linear-gradient(to right, #708ad4 20%, #d0368a 80%);
+}
+
+/************************** END ABOUT US  **************************/
+
+/************************************ SPECIALIZED TEAM *********************************************/
+.specialized {
+    height: 100vh;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.specialized .specialized--contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 70px;
+    height: 100vh;
+}
+
+.specialized .specialized--title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 !important;
+}
+
+.specialized .specialized--title h4 {
+    color: #bc74a5;
+}
+
+.specialized .specialized--content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 50px;
+    position: relative;
+}
+
+.specialized .specialized--content p {
+    text-align: center;
+    position: relative;
+    color: #6a7199;
+    line-height: 28px;
+}
+
+.specialized .specialized--content p::before {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 40%;
+    background-color: #bc74a5;
+    top: -40px;
+    right: 30%;
+    border-radius: 10px;
+}
+
+.specialized .specialized--content p::after {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 40%;
+    background-color: #bc74a5;
+    bottom: -40px;
+    left: 30%;
+    border-radius: 10px;
+
+}
+
+.specialized .specialized--content i:first-child {
+    position: absolute;
+    left: 2rem;
+    top: -15px;
+    color: #6a7199;
+}
+
+.specialized .specialized--content i:last-child {
+    position: absolute;
+    right: 1rem;
+    bottom: 4px;
+    color: #6a7199;
+}
+
+/************************************ END SPECIALIZED TEAM *********************************************/
+
+/************************************ DOCTOR TEAM *********************************************/
+
+.doctorTeam {
+    margin-top: -8%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.doctorTeam .doctor--box {
+    height: 42rem;
+    width: 21rem;
+    border-radius: 5px;
+    border: none;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    transition: transform 0.5s;
+}
+
+.doctorTeam .doctor--box img {
+    height: 20rem;
+    object-fit: cover;
+}
+
+.doctorTeam .doctor-body {
+    position: relative;
+}
+
+.doctorTeam .doctor-body h3 {
+    position: relative;
+    margin-bottom: 35px;
+    color: #232d60;
+}
+
+.doctorTeam .doctor-body h3::after {
+    position: absolute;
+    content: "";
+    height: 3px;
+    width: 23%;
+    background-color: #bc74a5;
+    bottom: -55%;
+    left: 0;
+    border-radius: 10px;
+}
+
+.doctorTeam .doctor-body small {
+    font-size: 18px;
+    color: #6a7199;
+}
+
+.doctorTeam .doctor-body p {
+    margin-top: 18px;
+}
+
+.doctorTeam .doctor-body {
+    background: rgba(242, 242, 242, 1);
+}
+
+.doctorTeam .card-social {
+    position: absolute;
+    bottom: 10px;
+}
+
+.card-social .social-link {
+    display: inline-block;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1;
+    padding-right: 0.5em;
+}
+
+.card-social .social-link a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    width: 40px;
+    height: 40px;
+}
+
+/************************************ END DOCTOR TEAM *********************************************/

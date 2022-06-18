@@ -1,0 +1,107 @@
+.check-network {
+    position: fixed;
+    top: 140px;
+    right: 20px;
+    z-index: 1;
+    animation: ShowCheckNetworkBox 1s ease forwards;
+}
+
+.check-network.hide {
+    animation: HideCheckNetworkBox 1s ease forwards;
+}
+
+@keyframes ShowCheckNetworkBox {
+    0% {
+        transform: translateX(100%);
+    }
+
+    40% {
+        transform: translateX(-5%);
+    }
+
+    80%,
+    100% {
+        transform: translateX(10px);
+    }
+}
+
+@keyframes HideCheckNetworkBox {
+    0% {
+        transform: translateX(10px);
+    }
+
+    40% {
+        transform: translateX(-10%);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        pointer-events: none;
+        transform: translateX(100%);
+    }
+}
+
+.check-network .check-network__toast {
+    background: #fff;
+    padding: 20px 15px 20px 20px;
+    border-radius: 10px;
+    width: 430px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    -webkit-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    border-left: 5px solid #2ecc71;
+}
+
+.check-network .check-network__toast.offline {
+    border-color: #ccc;
+}
+
+.check-network__toast .toast-content {
+    display: flex;
+    align-items: center;
+}
+
+.check-network__toast .toast-content .toast-icon {
+    font-size: 25px;
+    background: #2ecc71;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+}
+
+.check-network__toast.offline .toast-content .toast-icon {
+    background: #ccc;
+}
+
+.check-network__toast .toast-content .toast-details {
+    margin-left: 15px;
+}
+
+.toast-content .toast-details span {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.toast-content .toast-details p {
+    color: #878787;
+    margin-bottom: 0;
+}
+
+.check-network__toast .close-icon {
+    background: #f2f2f2;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 23px;
+    cursor: pointer;
+    color: #878787;
+    border-radius: 50%;
+}

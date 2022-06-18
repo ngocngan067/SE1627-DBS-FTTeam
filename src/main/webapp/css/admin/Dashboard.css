@@ -1,0 +1,406 @@
+.body-main {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background: var(--white);
+    transition: 0.5s;
+}
+
+.body-main.active {
+    width: calc(100% - 80px);
+    left: 80px;
+}
+
+/* Card Main */
+.card-main {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+
+.card-main .card-box {
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+}
+
+.card-main .card-box .content-numbers {
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5em;
+    color: var(--blue);
+}
+
+.card-main .card-box .content-name {
+    color: var(--black2);
+    font-size: 1.1em;
+    margin-top: 5px;
+}
+
+.card-main .card-box .card-box__icon {
+    font-size: 3.5em;
+    color: var(--black2);
+}
+
+.card-main .card-box:hover {
+    background: linear-gradient(135deg, #5D76E3, #E356F4);
+}
+
+.card-main .card-box:hover .content-numbers,
+.card-main .card-box:hover .content-name,
+.card-main .card-box:hover .card-box__icon {
+    color: var(--white);
+}
+
+/* Chart */
+.graph-chart {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+}
+
+.graph-chart .chart-box {
+    position: relative;
+    background: var(--white);
+    padding: 20px;
+    width: 100%;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    border-radius: 20px;
+}
+
+/* Order Lists */
+.order-list {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+}
+
+.order-list .recent-order {
+    position: relative;
+    display: grid;
+    grid-template-rows: 0.2fr 1fr;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    border-radius: 20px;
+}
+
+.order-list .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.order-list .order-header h2 {
+    font-weight: 600;
+    color: var(--blue);
+}
+
+.order-list .order-header .view-button {
+    background: linear-gradient(135deg, #5D76E3, #E356F4);
+    color: var(--white);
+    border: none;
+    border-radius: 2px;
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    width: 85px;
+    height: 40px;
+    font-size: 15px;
+}
+
+.order-list .order-header .view-button::after,
+.order-list .order-header .view-button::before {
+    content: "";
+    z-index: -1;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    width: 1.25em;
+}
+
+.order-list .order-header .view-button::after {
+    transform: translate3d(-1050%, 0, 0) rotate(35deg);
+}
+
+.order-list .order-header .view-button:hover::after {
+    transition: transform 0.55s ease-in-out;
+    transform: translate3d(200%, 0, 0) rotate(35deg);
+}
+
+.order-list .order-header .view-button::before {
+    transform: translate3d(950%, 0, 0) rotate(35deg);
+}
+
+.order-list .order-header .view-button:not(:hover)::before {
+    transition: transform 0.55s ease-in-out;
+    transform: translate3d(-310%, 0, 0) rotate(35deg);
+}
+
+.order-list .table-order {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.order-list table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-list table td,
+.order-list table th {
+    color: #398b93;
+    padding: 10px;
+}
+
+.order-list table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.order-list table th {
+    background-color: #398b93;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+.order-list table tr {
+    border-bottom: 1px solid var(--grey);
+}
+
+.order-list table tr:nth-child(2n) {
+    background-color: var(--white);
+}
+
+.order-list table tr:nth-child(2n + 1) {
+    background-color: #ecf6f7;
+}
+
+.order-list table tr:hover {
+    background: linear-gradient(135deg, #5D76E3, #E356F4);
+}
+
+.order-list table tr:hover td {
+    color: var(--white);
+}
+
+.order-list table tr td:last-child {
+    text-align: end;
+}
+
+.order-list table tr td:nth-child(3) {
+    text-align: end;
+}
+
+.order-list .recent-order .order-status {
+    padding: 2px 4px;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.order-list .recent-order .order-status.order-delivered {
+    background: #8de02c;
+}
+
+.order-list .recent-order .order-status.order-pending {
+    background: #f9ca3f;
+}
+
+.order-list .recent-order .order-status.order-return {
+    background: #f00;
+}
+
+.order-list .recent-order .order-status.order-inprogress {
+    background: #1795ce;
+}
+
+/* Customers List */
+.order-list .recent-customers {
+    position: relative;
+    display: grid;
+    grid-template-rows: 0.2fr 1fr;
+    min-height: 500px;
+    padding: 20px;
+    -webkit-box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgb(118 183 243);
+    border-radius: 20px;
+    background: var(--white);
+}
+
+.order-list .table-customers {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.table-customers .customers-body {
+    display: flex;
+    align-items: center;
+}
+
+.table-customers .customers-image {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.table-customers .customers-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.table-customers table tr:hover {
+    background: linear-gradient(135deg, #5D76E3, #E356F4);
+    color: var(--white);
+}
+
+.table-customers table tr td {
+    padding: 12px 10px;
+}
+
+.table-customers .customers-body .customers-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 991px) {
+    .body-main {
+        width: 100%;
+        left: 0;
+    }
+
+    .body-main.active {
+        left: 300px;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .card-main {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .order-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .order-list table,
+    .order-list tr,
+    .order-list td {
+        display: block;
+        width: 100%;
+    }
+
+    .order-list td {
+        display: flex;
+    }
+
+    .order-list .table-order td:not(:first-child),
+    .order-list .table-order td:first-child {
+        clear: both;
+        margin-left: 10px;
+        padding: 4px 20px 4px 150px;
+        position: relative;
+        text-align: left;
+    }
+
+    .order-list .table-order td:not(:first-child)::before,
+    .order-list .table-order td:first-child::before {
+        color: #398b93;
+        content: "";
+        display: block;
+        left: 0;
+        position: absolute;
+        padding-right: 10px;
+    }
+
+    .order-list .table-order tr:hover td:not(:first-child)::before,
+    .order-list .table-order tr:hover td:first-child::before {
+        color: var(--white);
+    }
+
+    .order-list .table-order td:nth-child(1):before {
+        content: "ID:";
+    }
+
+    .order-list .table-order td:nth-child(2):before {
+        content: "Name:";
+    }
+
+    .order-list .table-order td:nth-child(3):before {
+        content: "Price:";
+    }
+
+    .order-list .table-order td:nth-child(4):before {
+        content: "Payment:";
+    }
+
+    .order-list .table-order td:nth-child(5):before {
+        content: "Status:";
+    }
+
+    .order-list tr {
+        padding: 10px 0;
+        position: relative;
+    }
+
+    .order-list tr:first-child {
+        display: none;
+    }
+
+    .order-list table tbody {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .order-list td::before {
+        font-size: 15px;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card-main {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .order-list .order-header h2 {
+        font-size: 20px;
+    }
+}
