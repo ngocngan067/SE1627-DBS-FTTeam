@@ -18,13 +18,10 @@
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
         <!-- AOS  -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-        <!-- Malihu Custom Scrollbar -->
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
         <!-- LINK CSS -->
         <link rel="stylesheet" href="./css/user/UserRoot.css" />
         <link rel="stylesheet" href="./css/ScrollBackToTop.css" />
         <link rel="stylesheet" href="./css/CheckNetworkStatus.css" />
-        <link rel="stylesheet" href="./css/user/BoxChat.css" />
         <link rel="stylesheet" href="./css/user/NavBar.css" />
         <link rel="stylesheet" href="./css/user/FAQPage.css" />
         <link rel="stylesheet" href="./css/user/FooterPage.css" />
@@ -33,7 +30,6 @@
     <body>
         <jsp:include page="../../layouts/ScrollBackToTop.html"></jsp:include>
         <jsp:include page="../../layouts/CheckNetworkStatus.html"></jsp:include>
-        <jsp:include page="../../layouts/user/BoxChat.jsp"></jsp:include>
         
         <header class="header-background">
             <jsp:include page="../../layouts/user/NavBar.jsp"></jsp:include>
@@ -459,9 +455,12 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
         <!-- Script  -->
         <script src="./js/user/UserRoot.js"></script>
+        <script src="./js/user/NavBar.js"></script>
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
-        <script src="./js/user/BoxChat.js"></script>
         <script src="./js/user/FAQPage.js"></script>
+        <script>
+            setActiveMenuBar();
+        </script>
     </body>
 </html>

@@ -45,7 +45,7 @@
                         <button ng-click="exportToExcel('#tableToExport')" type="button" class="button-export">
                             <i class="fa-solid fa-file-excel"></i>Export Excel
                         </button>
-                        <button type="button" class="button-export button-add">
+                        <button onclick="window.location.href='${pageContext.request.contextPath}/admin/add-dentist'" type="button" class="button-export button-add">
                             <i class="fa-solid fa-user-plus"></i>Add Dentist
                         </button>
                     </div>
@@ -58,22 +58,23 @@
                             <th>STT</th>
                             <th>Full Name</th>
                             <th>Sex</th>
+                            <th>Date Of Birth</th>
                             <th>Phone Number</th>
                             <th>Email</th>
-                            <th>Disabled</th>
                             <th>Actions</th>
                         </tr>
 
-                        <tr ng-repeat="dentist in listDentist | filter: searching">
+                        <tr ng-repeat="dentist in listDentist | filter: ${SEARCH}">
                             <td>{{$index + 1}}</td>
                             <td>{{dentist.fullName}}</td>
                             <td>{{dentist.sex}}</td>
+                            <td>{{dentist.dateOfBirth | date:"dd/MM/yyyy"}}</td>
                             <td>{{dentist.userPhone}}</td>
                             <td>{{dentist.userEmail}}</td>
-                            <td>{{dentist.userStatus == 0 ? "Not Active" : (dentist.userStatus == 1 ? "Not disabled" : "Disabled")}}</td>
                             <td>
                                 <div class="table-action-button">
-                                    <button type="button" class="users-control btn btn-danger">Disable</button>
+                                    <a href="${pageContext.request.contextPath}/admin/edit-dentist?did={{dentist.userID}}" ng-hide="{{dentist.userStatus === 2}}" class="users-control btn btn-primary">Edit</a>
+                                    <button ng-click="disable(dentist.userID, dentist.userStatus == 1 ? 'Disable' : (dentist.userStatus == 2 ? 'UnDisable' : ''))" type="button" class="users-control btn btn-danger">{{dentist.userStatus == 1 ? "Disable" : "UnDisable"}}</button>
                                 </div>
                             </td>
                         </tr>
@@ -81,7 +82,7 @@
                 </div>
 
                 <!-- User Management Pagination -->
-                <c:if test="${CURRENT_PAGE > 1}">
+                <c:if test="${END_PAGE > 1}">
                     <div class="table-pagination">
                         <ul>
                             <c:if test="${CURRENT_PAGE > 1}">
@@ -118,12 +119,14 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <!-- LINK ANGULAR -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <!-- LINK Sweet Alert 2 -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Script -->
         <script src=".././js/admin/AdminRoot.js"></script>
         <script src=".././js/admin/NavBar.js"></script>
         <script src=".././js/admin/DentistManagement.js"></script>
         <script>
-            ManageDentistAPI(${DENTIST_LIST});
+            ManageDentistAPI("${pageContext.request.contextPath}/admin/dentist-management", ${DENTIST_LIST});
             setActiveMenuBar();
         </script>
     </body>

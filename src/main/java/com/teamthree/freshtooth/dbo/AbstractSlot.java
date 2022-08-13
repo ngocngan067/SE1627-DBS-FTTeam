@@ -12,6 +12,8 @@ public abstract class AbstractSlot<T> {
 
     protected abstract List<T> getAllSlot(Connection connection) throws SQLException;
     
+    protected abstract T getSlot(Connection connection, Object slotID) throws SQLException;
+    
     /***
      * Get all slot
      * @return
@@ -27,5 +29,25 @@ public abstract class AbstractSlot<T> {
             connection.close();
         }
         return list;
+    }
+    
+    /**
+     * *
+     * Get slot
+     *
+     * @param slotID
+     * @return
+     * @throws SQLException
+     */
+    public T getSlot(Object slotID) throws SQLException {
+        T t = null;
+
+        try {
+            connection = DBUtils.makeConnection();
+            t = getSlot(connection, slotID);
+        } finally {
+            connection.close();
+        }
+        return t;
     }
 }

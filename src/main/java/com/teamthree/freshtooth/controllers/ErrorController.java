@@ -6,12 +6,28 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class ErrorController extends HttpServlet {
+    
+    private static final String URL_PAGE = "URL_PAGE";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
+        HttpSession session = request.getSession();
+        boolean loginUser = (session != null && session.getAttribute("LOGIN_USER") != null);
+        boolean loginAdmin = (session != null && session.getAttribute("LOGIN_ADMIN") != null);
+        boolean loginEmployee = (session != null && session.getAttribute("LOGIN_EMPLOYEE") != null);
+
+        if (loginUser) {
+            request.setAttribute(URL_PAGE, request.getContextPath() + "/home");
+        } else if (loginAdmin) {
+            request.setAttribute(URL_PAGE, request.getContextPath() + "/admin/dashboard");
+        } else if (loginEmployee) {
+            request.setAttribute(URL_PAGE, request.getContextPath() + "/employee/appointment");
+        }
+
         RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/ErrorPage.jsp");
         requestDispatcher.forward(request, response);
     }

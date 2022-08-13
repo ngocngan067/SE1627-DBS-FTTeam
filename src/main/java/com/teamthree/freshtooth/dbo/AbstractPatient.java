@@ -10,7 +10,7 @@ public abstract class AbstractPatient<T> {
 
     protected abstract boolean addPatient(Connection connection, T patient) throws SQLException;
 
-    protected abstract boolean updatePatient(Connection connection, Object userID) throws SQLException;
+    protected abstract boolean updatePatient(Connection connection, T patient) throws SQLException;
 
     protected abstract T getPatient(Connection connection, Object object) throws SQLException;
     
@@ -35,16 +35,16 @@ public abstract class AbstractPatient<T> {
     
     /***
      * Update information patient
-     * @param userID
+     * @param patient
      * @return
      * @throws SQLException 
      */
-    public boolean updatePatient(Object userID) throws SQLException {
+    public boolean updatePatient(T patient) throws SQLException {
         boolean check;
         
         try {
             connection = DBUtils.makeConnection();
-            check = updatePatient(connection, userID);
+            check = updatePatient(connection, patient);
         } finally {
             connection.close();
         }

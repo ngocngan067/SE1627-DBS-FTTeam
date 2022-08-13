@@ -1,0 +1,107 @@
+.hero-header {
+    background-size: cover;
+}
+
+.section-title h5::before {
+    position: absolute;
+    content: "";
+    width: 45px;
+    height: 3px;
+    right: -55px;
+    bottom: 11px;
+    background: #06A3DA;
+}
+
+.section-title h5::after {
+    position: absolute;
+    content: "";
+    width: 15px;
+    height: 3px;
+    right: -75px;
+    bottom: 11px;
+    background: #F57E57;
+}
+
+.section-title h1 {
+    font-weight: 700;
+}
+
+.service-item img,
+.service-item .bg-light,
+.service-item .bg-light h5 {
+    transition: .5s;
+}
+
+.service-item:hover img {
+    transform: scale(1.15);
+}
+
+.service-item .bg-light::after {
+    position: absolute;
+    content: "";
+    top: 50%;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    border-radius: 100px / 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, .7);
+    opacity: 0;
+    transition: .5s;
+    z-index: -1;
+}
+
+.service-item:hover .bg-light::after {
+    opacity: 1;
+}
+
+.service-image {
+    height: 276px;
+}
+
+.view-more {
+    display: block;
+    clear: both;
+    width: 100%;
+}
+
+.view-more .button-view {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    line-height: 40px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+    border-radius: 4px;
+    margin: 10px auto;
+    width: 340px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+.view-more .button-view::after {
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #333;
+    content: '';
+    position: relative;
+    right: -8px;
+    top: 12px;
+}
+
+.view-more .button-view:hover {
+    background-color: #288ad6;
+    color: #fff;
+    border: 1px solid #288ad6;
+}
+
+.spinner-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-loader .spinner-title {
+    font-size: 16px;
+    margin: 0 0 0 15px;
+}

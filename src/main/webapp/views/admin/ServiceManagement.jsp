@@ -63,7 +63,7 @@
                             <th>Actions</th>
                         </tr>
 
-                        <tr ng-repeat="service in listService | filter: searching">
+                        <tr ng-repeat="service in listService | filter: ${SEARCH}">
                             <td>{{$index + 1}}</td>
                             <td>{{service.serviceName}}</td>
                             <td>{{service.servicePrice}}</td>
@@ -71,7 +71,8 @@
                             <td>{{service.serviceStatus == 0 ? "Not disabled" : "Disabled"}}</td>
                             <td>
                                 <div class="table-action-button">
-                                    <button type="button" class="users-control btn btn-danger">Disable</button>
+                                    <a href="${pageContext.request.contextPath}/admin/edit-service?sid={{service.serviceID}}" ng-hide="{{service.serviceStatus === 1}}" class="users-control btn btn-primary">Edit</a>
+                                    <button ng-click="disable(service.serviceID, service.serviceStatus === 0 ? 'Disable' : 'UnDisable')" type="button" class="users-control btn btn-danger">{{service.serviceStatus == 0 ? "Disable" : "UnDisable"}}</button>
                                 </div>
                             </td>
                         </tr>
@@ -79,7 +80,7 @@
                 </div>
 
                 <!-- User Management Pagination -->
-                <c:if test="${CURRENT_PAGE > 1}">
+                <c:if test="${END_PAGE > 1}">
                     <div class="table-pagination">
                         <ul>
                             <c:if test="${CURRENT_PAGE > 1}">
@@ -116,12 +117,14 @@
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
         <!-- LINK ANGULAR -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <!-- LINK Sweet Alert 2 -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- Script -->
         <script src=".././js/admin/AdminRoot.js"></script>
         <script src=".././js/admin/NavBar.js"></script>
         <script src=".././js/admin/ServiceManagement.js"></script>
         <script>
-            ManageServiceAPI(${SERVICE_LIST});
+            ManageServiceAPI("${pageContext.request.contextPath}/admin/service-management", ${SERVICE_LIST});
             setActiveMenuBar();
         </script>
     </body>

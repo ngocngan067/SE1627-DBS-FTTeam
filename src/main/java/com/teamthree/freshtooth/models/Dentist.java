@@ -7,17 +7,19 @@ import lombok.Setter;
 @Setter
 public class Dentist {
 
-    private String dentistID, skill;
-    private int yearsOfExp, salary, insurance;
+    private String dentistID, skill, descriptionDentist;
+    private int yearsOfExp;
+    private double salary, insurance;
 
     public Dentist() {
     }
 
-    public Dentist(String dentistID, String skill, int yearsOfExp, int salary, int insurance) {
+    public Dentist(String dentistID, String skill, String descriptionDentist, int yearsOfExp, double insurance, double salary) {
         this.dentistID = dentistID;
         this.skill = skill;
+        this.descriptionDentist = descriptionDentist;
         this.yearsOfExp = yearsOfExp;
-        this.salary = salary;
         this.insurance = insurance;
+        this.salary = salary;
     }
 }

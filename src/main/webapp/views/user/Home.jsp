@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +17,6 @@
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- UN ICONS -->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <!-- Malihu Custom Scrollbar -->
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
         <!-- AOS  -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <!-- LINK CSS -->
@@ -40,9 +39,16 @@
         <!------------- HEADER BODY ------------->
         <div class="d-none d-xxl-flex container__home" style="background-image: url(./images/background.png);">
             <div class="content--home">
-                <a href="" class="btn--login">
-                    <script>document.write(new Date().getFullYear());</script> Collections
-                </a>
+                <c:if test="${sessionScope.LOGIN_USER != null}">
+                    <a href="${pageContext.request.contextPath}/booking" class="btn--login">
+                        <script>document.write(new Date().getFullYear());</script> Collections
+                    </a>
+                </c:if>
+                <c:if test="${sessionScope.LOGIN_USER == null}">
+                    <a href="${pageContext.request.contextPath}/login" class="btn--login">
+                        <script>document.write(new Date().getFullYear());</script> Collections
+                    </a>
+                </c:if>
                 <h1>You should always<br>feel confident</h1>
                 <p>A better life starts with a beautiful smile.</p>
             </div>
@@ -53,9 +59,16 @@
         <div class="d-flex d-xxl-none container__home container__home--responsive"
             style="background-image: url(./images/background3.jpg);">
             <div class="content--home">
-                <a href="" class="btn--login">
-                    <script>document.write(new Date().getFullYear());</script> Collections
-                </a>
+                <c:if test="${sessionScope.LOGIN_USER != null}">
+                    <a href="${pageContext.request.contextPath}/booking" class="btn--login">
+                        <script>document.write(new Date().getFullYear());</script> Collections
+                    </a>
+                </c:if>
+                <c:if test="${sessionScope.LOGIN_USER == null}">
+                    <a href="${pageContext.request.contextPath}/login" class="btn--login">
+                        <script>document.write(new Date().getFullYear());</script> Collections
+                    </a>
+                </c:if>
                 <h1>You should always feel confident</h1>
                 <p>A better life starts with a beautiful smile.</p>
             </div>
@@ -72,18 +85,11 @@
                         <div data-aos="zoom-in-up" data-aos-duration="1500" data-aos-offset="150"
                             class="col-12 col-md-6 col-lg-4 pb-5">
                             <div class="card" style="height:26rem;">
-                                <a href="">
+                                <a href="${pageContext.request.contextPath}/booking">
                                     <div class="card-body card-content pt-5">
                                         <h1>1-800-600-380</h1>
                                         <h3 class="card-title">EMERGENCY SERVICE</h3>
-                                        <p class="card-text">Aliquam erat volutpat. Nullam imperdiet sapien felis, non
-                                            lobortis
-                                            odio mattis in. Quisque dapibus aliquet dictum. Integer dapibus ullamcorper est,
-                                            ac
-                                            .</p>
-                                        <div class="detal--btn">
-                                            <a href="#" class="detail--button">See More</a>
-                                        </div>
+                                        <p class="card-text">Call us immediately if you are having problems with your teeth.</p>
                                     </div>
                                 </a>
                             </div>
@@ -91,16 +97,15 @@
                         <div data-aos="zoom-in-up" data-aos-duration="1500" data-aos-offset="150"
                             class="col-12 col-md-6 col-lg-4 pb-5">
                             <div class="card" style="height:26rem;">
-                                <a href="">
+                                <a href="${pageContext.request.contextPath}/booking">
                                     <div class="card-body card-content pt-5">
                                         <i class="fa-solid fa-calendar-days"></i>
                                         <h3 class="card-title">DO YOU WANT TO MAKE AN APPOINTMENT</h3>
-                                        <p class="card-text">Aliquam erat volutpat. Nullam imperdiet sapien felis, non
-                                            lobortis
-                                            odio mattis in. Quisque dapibus aliquet dictum.
+                                        <p class="card-text">
+                                            Make an appointment for a dental consultation at Fresh Tooth clinic. We are always dedicated and helpful!
                                         </p>
                                         <div class="detal--btn">
-                                            <a href="#" class="detail--button">Book Now</a>
+                                            <a href="${pageContext.request.contextPath}/booking" class="detail--button">Book Now</a>
                                         </div>
                                     </div>
                                 </a>
@@ -109,15 +114,12 @@
                         <div data-aos="zoom-in-up" data-aos-duration="1500" data-aos-offset="150"
                             class="col-12 col-md-6 col-lg-4 pb-5">
                             <div class="card" style="height:26rem;">
-                                <a href="">
+                                <a href="${pageContext.request.contextPath}/booking">
                                     <div class="card-body card-content pt-5">
                                         <i class="fa-solid fa-clock"></i>
                                         <h3 class="card-title">OPENING HOURS</h3>
-                                        <p class="card-text">Monday – Friday</p>
-                                        <p class="card-text">Saturtay – Sunday</p>
-                                        <div class="detal--btn">
-                                            <a href="#" class="detail--button">Contact Us</a>
-                                        </div>
+                                        <p class="card-text">Monday – Sunday</p>
+                                        <p class="card-text">(9:00 – 17:00)</p>
                                     </div>
                                 </a>
                             </div>
@@ -141,8 +143,9 @@
                             <img src="./images/medical_care_movn.svg" class="card-img-top" alt="Best Treatment">
                             <div class="card-body box-body">
                                 <h4>Best Treatment</h4>
-                                <p class="card-text">Molestiae Iure Assumenda Cumque Perferendis Ad Libero Excepturi Amet Ex
-                                    Aliquid Harum Velit Repellat Quaerat In. Amet, Unde!</p>
+                                <p class="card-text">
+                                    We offer you the Best Treatment, a wide range of special treatments, and tailor-made medical packages tagged by treatment categories.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -153,8 +156,9 @@
                             <img src="./images/medicine_b-1-ol.svg" class="card-img-top" alt="Emergency Help">
                             <div class="card-body box-body">
                                 <h4>Emergency Help</h4>
-                                <p class="card-text">Molestiae Iure Assumenda Cumque Perferendis Ad Libero Excepturi Amet Ex
-                                    Aliquid Harum Velit Repellat Quaerat In. Amet, Unde!</p>
+                                <p class="card-text">
+                                    Dentists are open for urgent and routine treatments. If you're registered with a dentist, you can contact the surgery by phone or in person.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -165,8 +169,9 @@
                             <img src="./images/treatment.svg" class="card-img-top" alt="Medical Staff">
                             <div class="card-body box-body">
                                 <h4>Medical Staff</h4>
-                                <p class="card-text">Molestiae Iure Assumenda Cumque Perferendis Ad Libero Excepturi Amet Ex
-                                    Aliquid Harum Velit Repellat Quaerat In. Amet, Unde!</p>
+                                <p class="card-text">
+                                    Medical Staff prides itself in the number of experienced, highly skilled, and specialized nurses in a variety of areas.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -177,8 +182,9 @@
                             <img src="./images/doctor_kw-5-l.svg" class="card-img-top" alt="Qualified Doctor">
                             <div class="card-body box-body">
                                 <h4>Qualified Doctor</h4>
-                                <p class="card-text">Molestiae Iure Assumenda Cumque Perferendis Ad Libero Excepturi Amet Ex
-                                    Aliquid Harum Velit Repellat Quaerat In. Amet, Unde!</p>
+                                <p class="card-text">
+                                    Physician medically qualified may be added to the doctor to confirm that the person in question is a medical doctor.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -217,107 +223,17 @@
             <div class="doctorTeam pb-2">
                 <div class="container">
                     <div class="row">
-                        <div data-aos="flip-left" data-aos-duration="1500"
-                            class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                            <div class="card doctor--box">
-                                <img src="./images/people-01.jpg" class="card-img-top" alt="Qualified Doctor">
-                                <div class="card-body doctor-body">
-                                    <h3>Alex Terrel</h3>
-                                    <small>Senior Orthodontist</small>
-                                    <p class="card-text">Appropriately empower dynamic leadership skills after business
-                                        portals. Globally myocardinate interactive supply chains with quality.</p>
-                                    <div class="card-social">
-                                        <div class="social-link">
-                                            <a href="" class="card-social__facebook">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </div>
-                                        <div class="social-link">
-                                            <a href="" class="card-social__twitter">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </div>
+                        <c:forEach items="${DENTIST_LIST}" var="dentist">
+                            <a href="${pageContext.request.contextPath}/dentist-detail?did=<c:out value="${dentist.value.dentistID}"/>" data-aos="flip-left" data-aos-duration="1500" class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
+                                <div class="card doctor--box">
+                                    <img src="data:image/png;base64,<c:out value="${dentist.key.imageAvatar}"/>" class="card-img-top" alt="Qualified Doctor">
+                                    <div class="card-body doctor-body">
+                                        <h3><c:out value="${dentist.key.fullName}"/></h3>
+                                        <p class="card-text"><c:out value="${dentist.value.skill}"/></p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div data-aos="flip-left" data-aos-duration="1500"
-                            class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                            <div class="card doctor--box">
-                                <img src="./images/people-02.jpg" class="card-img-top" alt="Qualified Doctor">
-                                <div class="card-body doctor-body">
-                                    <h3>Michél Anderson</h3>
-                                    <small>Pediatric Dentist</small>
-                                    <p class="card-text">Enthusiastically mesh long-term high-impact infrastructures
-                                        vis-a-vis efficient customer service leadership rather than prospective experiences.
-                                    </p>
-                                    <div class="card-social">
-                                        <div class="social-link">
-                                            <a href="" class="card-social__facebook">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </div>
-                                        <div class="social-link">
-                                            <a href="" class="card-social__twitter">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div data-aos="flip-left" data-aos-duration="1500"
-                            class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                            <div class="card doctor--box">
-                                <img src="./images/people-03.jpg" class="card-img-top" alt="Qualified Doctor">
-                                <div class="card-body doctor-body">
-                                    <h3>Pediatric Dentist</h3>
-                                    <small>Senior Prosthodontist</small>
-                                    <p class="card-text">Objectively integrate enterprise-wide strategic theme areas with
-                                        good infrastructures. Interactively productize premium technologies.</p>
-                                    <div class="card-social">
-                                        <div class="social-link">
-                                            <a href="" class="card-social__facebook">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </div>
-                                        <div class="social-link">
-                                            <a href="" class="card-social__twitter">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div data-aos="flip-left" data-aos-duration="1500"
-                            class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                            <div class="card doctor--box">
-                                <img src="./images/people-04.jpg" class="card-img-top" alt="Qualified Doctor">
-                                <div class="card-body doctor-body">
-                                    <h3>Carlie Addison</h3>
-                                    <small>Dental Nurse</small>
-                                    <p class="card-text">Uniquely deploy cross-unit benefits with wireless testing
-                                        procedures. Build backward compatible relationships whereas tactical paradigms.</p>
-                                    <div class="card-social">
-                                        <div class="social-link">
-                                            <a href="" class="card-social__facebook">
-                                                <i class="fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </div>
-                                        <div class="social-link">
-                                            <a href="" class="card-social__twitter">
-                                                <i class="fa-brands fa-twitter"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </a>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -336,7 +252,7 @@
                                     <img src="./images/s1.webp" width="68" height="72" alt="Image-HasTech">
                                 </div>
                                 <div class="content">
-                                    <h4 class="title"><a href="service-details.html">General Dentistry</a></h4>
+                                    <h4 class="title">General Dentistry</h4>
                                     <p>Dental care is the maintenance teeth the practice of keeping mouth clean sue pleasure
                                         rationally encounter</p>
                                 </div>
@@ -352,7 +268,7 @@
                                     <img src="./images/s2.webp" width="82" height="72" alt="Image-HasTech">
                                 </div>
                                 <div class="content">
-                                    <h4 class="title"><a href="service-details.html">Cosmetic Braces</a></h4>
+                                    <h4 class="title">Cosmetic Braces</h4>
                                     <p>Dental care is the maintenance teeth the practice of keeping mouth clean sue pleasure
                                         rationally encounter</p>
                                 </div>
@@ -368,7 +284,7 @@
                                     <img src="./images/s3.webp" width="64" height="72" alt="Image-HasTech">
                                 </div>
                                 <div class="content">
-                                    <h4 class="title"><a href="service-details.html">Prediatic Dentistry</a></h4>
+                                    <h4 class="title">Pediatric Dentistry</h4>
                                     <p>Dental care is the maintenance teeth the practice of keeping mouth clean sue pleasure
                                         rationally encounter</p>
                                 </div>
@@ -384,7 +300,7 @@
                                     <img src="./images/s4.webp" width="77" height="72" alt="Image-HasTech">
                                 </div>
                                 <div class="content">
-                                    <h4 class="title"><a href="service-details.html">Dental Bridge</a></h4>
+                                    <h4 class="title">Dental Bridge</h4>
                                     <p>Dental care is the maintenance teeth the practice of keeping mouth clean sue pleasure
                                         rationally encounter</p>
                                 </div>
@@ -400,7 +316,7 @@
                                     <img src="./images/s5.webp" width="87" height="72" alt="Image-HasTech">
                                 </div>
                                 <div class="content">
-                                    <h4 class="title"><a href="service-details.html">Oral Surgery</a></h4>
+                                    <h4 class="title">Oral Surgery</h4>
                                     <p>Dental care is the maintenance teeth the practice of keeping mouth clean sue pleasure
                                         rationally encounter</p>
                                 </div>
@@ -416,7 +332,7 @@
                                     <img src="./images/s6.webp" width="89" height="70" alt="Image-HasTech">
                                 </div>
                                 <div class="content">
-                                    <h4 class="title"><a href="service-details.html">Root Canals</a></h4>
+                                    <h4 class="title">Root Canals</h4>
                                     <p>Dental care is the maintenance teeth the practice of keeping mouth clean sue pleasure
                                         rationally encounter</p>
                                 </div>
@@ -439,10 +355,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- AOS  -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <!-- Malihu Custom Scrollbar -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
         <!-- Script  -->
         <script src="./js/user/UserRoot.js"></script>
+        <script src="./js/user/NavBar.js"></script>
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
     </body>

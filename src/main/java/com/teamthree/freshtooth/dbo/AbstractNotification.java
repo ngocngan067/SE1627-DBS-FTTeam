@@ -14,7 +14,7 @@ public abstract class AbstractNotification<T> {
     
     protected abstract boolean addNotification(Connection connection, T notification) throws SQLException;
     
-    protected abstract boolean updateNotification(Connection connection, Object notifyID, Object userID) throws SQLException;
+    protected abstract boolean updateNotification(Connection connection, Object userID) throws SQLException;
     
     protected abstract int countNotification(Connection connection, Object userID) throws SQLException;
     
@@ -58,17 +58,16 @@ public abstract class AbstractNotification<T> {
     
     /***
      * Update notification
-     * @param notifyID
      * @param userID
      * @return
      * @throws SQLException 
      */
-    public boolean updateNotification(Object notifyID, Object userID) throws SQLException {
+    public boolean updateNotification(Object userID) throws SQLException {
         boolean check;
         
         try {
             connection = DBUtils.makeConnection();
-            check = updateNotification(connection, notifyID, userID);
+            check = updateNotification(connection, userID);
         } finally {
             connection.close();
         }

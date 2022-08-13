@@ -89,7 +89,6 @@
                                                     </div>
                                                     <div class="setting-avatar_button">
                                                         <button type="button" class="setting-avatar_change">Change</button>
-                                                        <button type="button" class="setting-avatar_remove">Remove</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,6 +214,7 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
         <!-- Script  -->
         <script src="./js/user/UserRoot.js"></script>
+        <script src="./js/user/NavBar.js"></script>
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
         <script src="./js/user/EditProfile.js"></script>

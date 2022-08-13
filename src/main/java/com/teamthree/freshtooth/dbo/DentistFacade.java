@@ -13,17 +13,23 @@ public class DentistFacade extends AbstractDentist<Dentist> {
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     private static final String SQL_GET_TOTAL_DENTIST = "SELECT COUNT(*) FROM Dentists";
-    private static final String SQL_INSERT_DENTIST = "INSERT INTO Dentists(DentistID, YearsOfExp, Skills, Salary, Insurance) VALUES(?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE_DENTIST = "UPDATE Dentists SET YearsOfExp = ?, Skills = ?, Salary = ?, Insurance = ? WHERE DentistID = ?";
-    private static final String SQL_GET_PAGING_DENTIST = "SELECT * FROM Dentists ORDER BY DentistID OFFSET ? ROWS FETCH NEXT 5 ROWS ONLY;";
+    private static final String SQL_INSERT_DENTIST = "INSERT INTO Dentists(DentistID, YearsOfExp, Skills, Salary, Insurance, DescriptionDentist) VALUES(?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE_DENTIST = "UPDATE Dentists SET YearsOfExp = ?, Skills = ?, Salary = ?, Insurance = ?, DescriptionDentist = ? WHERE DentistID = ?";
+//    private static final String SQL_GET_PAGING_DENTIST = "SELECT * FROM Dentists ORDER BY DentistID OFFSET ? ROWS FETCH NEXT 5 ROWS ONLY;";
+    private static final String SQL_GET_PAGING_DENTIST = "SELECT * FROM Dentists ORDER BY DentistID LIMIT 5 OFFSET ?;";
+//    private static final String SQL_GET_TOP_4_DENTIST = "SELECT TOP 4 * FROM Dentists";
+    private static final String SQL_GET_TOP_4_DENTIST = "SELECT * FROM Dentists ORDER BY RAND() LIMIT 4;";
+    private static final String SQL_GET_ALL_DENTIST = "SELECT * FROM Dentists";
+    private static final String SQL_GET_DENTIST_DETAIL_BY_ID = "SELECT * FROM Dentists WHERE DentistID = ?";
 
-    private Dentist getInfoNotificationFromSQL(ResultSet resultSet) throws SQLException {
+    private Dentist getInfoDentistFromSQL(ResultSet resultSet) throws SQLException {
         String getDentistID = resultSet.getString("DentistID");
         int getYearsOfExp = resultSet.getInt("YearsOfExp");
         String getSkills = resultSet.getString("Skills");
-        int getSalary = resultSet.getInt("Salary");
-        int getInsurance = resultSet.getInt("Insurance");
-        return new Dentist(getDentistID, getSkills, getYearsOfExp, getSalary, getInsurance);
+        double getSalary = resultSet.getDouble("Salary");
+        double getInsurance = resultSet.getDouble("Insurance");
+        String getDescriptionDentist = resultSet.getString("DescriptionDentist");
+        return new Dentist(getDentistID, getSkills, getDescriptionDentist, getYearsOfExp, getInsurance, getSalary);
     }
 
     @Override
@@ -35,8 +41,9 @@ public class DentistFacade extends AbstractDentist<Dentist> {
                 preparedStatement.setString(1, dentist.getDentistID());
                 preparedStatement.setInt(2, dentist.getYearsOfExp());
                 preparedStatement.setString(3, dentist.getSkill());
-                preparedStatement.setInt(4, dentist.getSalary());
-                preparedStatement.setInt(5, dentist.getInsurance());
+                preparedStatement.setDouble(4, dentist.getSalary());
+                preparedStatement.setDouble(5, dentist.getInsurance());
+                preparedStatement.setString(6, dentist.getDescriptionDentist());
                 preparedStatement.executeUpdate();
                 return true;
             }
@@ -58,9 +65,10 @@ public class DentistFacade extends AbstractDentist<Dentist> {
                 preparedStatement = connection.prepareStatement(SQL_UPDATE_DENTIST);
                 preparedStatement.setInt(1, dentist.getYearsOfExp());
                 preparedStatement.setString(2, dentist.getSkill());
-                preparedStatement.setInt(3, dentist.getSalary());
-                preparedStatement.setInt(4, dentist.getInsurance());
-                preparedStatement.setString(5, dentist.getDentistID());
+                preparedStatement.setDouble(3, dentist.getSalary());
+                preparedStatement.setDouble(4, dentist.getInsurance());
+                preparedStatement.setString(5, dentist.getDescriptionDentist());
+                preparedStatement.setString(6, dentist.getDentistID());
                 preparedStatement.executeUpdate();
                 return true;
             }
@@ -86,12 +94,18 @@ public class DentistFacade extends AbstractDentist<Dentist> {
                         preparedStatement = connection.prepareStatement(SQL_GET_PAGING_DENTIST);
                         preparedStatement.setInt(1, ((int) object - 1) * 5);
                         break;
+                    case "ShowTop4Dentist":
+                        preparedStatement = connection.prepareStatement(SQL_GET_TOP_4_DENTIST);
+                        break;
+                    case "GetAllDentist":
+                        preparedStatement = connection.prepareStatement(SQL_GET_ALL_DENTIST);
+                        break;
                 }
 
                 resultSet = preparedStatement.executeQuery();
 
                 while (resultSet.next()) {
-                    Dentist dentist = getInfoNotificationFromSQL(resultSet);
+                    Dentist dentist = getInfoDentistFromSQL(resultSet);
                     dentistList.add(dentist);
                 }
             }
@@ -128,6 +142,32 @@ public class DentistFacade extends AbstractDentist<Dentist> {
             }
         }
         return 0;
+    }
+
+    @Override
+    protected Dentist getDentistDetail(Connection connection, Object dentistID) throws SQLException {
+        try {
+            if (connection != null) {
+                preparedStatement = connection.prepareStatement(SQL_GET_DENTIST_DETAIL_BY_ID);
+                preparedStatement.setString(1, dentistID.toString());
+                resultSet = preparedStatement.executeQuery();
+
+                if (resultSet.next()) {
+                    return getInfoDentistFromSQL(resultSet);
+                }
+            }
+        } finally {
+            if (resultSet != null) {
+                resultSet.close();
+            }
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (connection != null) {
+                connection.close();
+            }
+        }
+        return null;
     }
 
 }

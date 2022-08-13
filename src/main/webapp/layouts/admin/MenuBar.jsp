@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <header class="navigation">
     <ul>
         <li>
@@ -42,13 +43,22 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="${pageContext.request.contextPath}/admin/service-type-management" class="nav-link">
                 <span class="navigation-icon">
-                    <i class="fa-solid fa-gear"></i>
+                    <i class="fa-solid fa-screwdriver"></i>
                 </span>
-                <span class="navigation-title">Setting</span>
+                <span class="navigation-title">Service Type</span>
             </a>
         </li>
+        <c:if test="${MENU_BAR != null}">
+            <hr>
+            <li class="nav-item">
+                <a href="${ACTION_URL}" class="nav-link">
+                    <span class="navigation-icon">${MENU_BAR_ICON}</span>
+                    <span class="navigation-title">${BUTTON_ACTION}</span>
+                </a>
+            </li>
+        </c:if>
         <li>
             <a href="${pageContext.request.contextPath}/logout">
                 <span class="navigation-icon">

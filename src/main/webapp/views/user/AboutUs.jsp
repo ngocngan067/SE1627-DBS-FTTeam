@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +17,6 @@
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- UN ICONS -->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <!-- Malihu Custom Scrollbar -->
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
         <!-- AOS  -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <!-- LINK CSS -->
@@ -44,11 +43,11 @@
                 <div class="aboutUs--content">
                     <h5>About us</h5>
                     <h1>GENERAL INFORMATION</h1>
-                    <p>Praesent venenatis lobortis volutpat. Curabitur ultricies ex vel mi ornare fringilla. Aenean luctus
-                        orci ac tellus rutrum posuere. Curabitur sit amet varius erat. Morbi placerat, nulla eu iaculis
-                        condimentum.</p>
-                    <button type="button" class="btn-co1">VIEW OUR SERVICE</button>
-                    <button type="button" class="btn-co2">BOOK A SERVICE</button>
+                    <p>
+                        Information about Fresh Tooth dental clinic brings the best patient experience.
+                    </p>
+                    <button onclick="window.location.href='${pageContext.request.contextPath}/service'" type="button" class="btn-co1">VIEW OUR SERVICE</button>
+                    <button onclick="window.location.href='${pageContext.request.contextPath}/booking'" type="button" class="btn-co2">BOOK A SERVICE</button>
                 </div>
             </div>
 
@@ -63,33 +62,33 @@
                             <div class="aboutUs--title pt-4">
                                 <h6>About Us</h6>
                                 <h2>Our dentists work the best for your needs</h2>
-                                <p>Duis sed odio sit amet nibh vulputate cursus a sit am maur Morbi accumsan ipsum velit.
-                                    Nam nec tellus a od tincidunt auctor a ornare odio sed. Cum prima putant equidem an. Eu
-                                    his harum everti aeterno. Quod corpora referrentur quis.</p>
+                                <p>
+                                    Fresh Tooth is committed to providing customers with top quality service packages at the best cost in the market today. And provide detailed price list of dental services that are being applied.
+                                </p>
                             </div>
                             <ul class="list--check">
                                 <div class="list">
                                     <i class="far fa-check-circle"></i>
-                                    <li>Proin gravida nibh velit auctor</li>
+                                    <li>Help customers easily follow up</li>
                                 </div>
 
                                 <div class="list">
                                     <i class="far fa-check-circle"></i>
-                                    <li>Aenean sollicitudin, lorem quis</li>
+                                    <li> Easy service reference</li>
                                 </div>
 
                                 <div class="list">
                                     <i class="far fa-check-circle"></i>
-                                    <li>Nisi elit consequat ipsum quam</li>
+                                    <li>Reputation guarantee</li>
                                 </div>
 
                                 <div class="list">
                                     <i class="far fa-check-circle"></i>
-                                    <li>Sem nibh id eliet duis sed odio</li>
+                                    <li>The team is always professional and enthusiastic</li>
                                 </div>
                             </ul>
 
-                            <button class="gradient-btn mr-20 d-none d-md-block">LEARN MORE</button>
+                            <button onclick="location.href='${pageContext.request.contextPath}/news'" class="gradient-btn mr-20 d-none d-md-block">LEARN MORE</button>
                         </div>
                     </div>
                 </div>
@@ -102,7 +101,7 @@
                         <div class=" col-12 col-md-6 specialized--contain">
                             <div data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="1500"
                                 class="aboutUs specialized--title">
-                                <h4>FreshTooth</h4>
+                                <h4>Fresh Tooth</h4>
                                 <h2 class="our__services--title p-0 mb-0">Specialized Team</h2>
                             </div>
 
@@ -125,110 +124,17 @@
                 <div class="doctorTeam pb-2">
                     <div class="container">
                         <div class="row">
-                            <div data-aos="flip-left" data-aos-duration="1500"
-                                class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                                <div class="card doctor--box">
-                                    <img src="./images/people-01.jpg" class="card-img-top" alt="Qualified Doctor">
-                                    <div class="card-body doctor-body">
-                                        <h3>Alex Terrel</h3>
-                                        <small>Senior Orthodontist</small>
-                                        <p class="card-text">Appropriately empower dynamic leadership skills after business
-                                            portals. Globally myocardinate interactive supply chains with quality.</p>
-                                        <div class="card-social">
-                                            <div class="social-link">
-                                                <a href="" class="card-social__facebook">
-                                                    <i class="fa-brands fa-facebook-f"></i>
-                                                </a>
-                                            </div>
-                                            <div class="social-link">
-                                                <a href="" class="card-social__twitter">
-                                                    <i class="fa-brands fa-twitter"></i>
-                                                </a>
-                                            </div>
+                            <c:forEach items="${DENTIST_LIST}" var="dentist">
+                                <a href="${pageContext.request.contextPath}/dentist-detail?did=<c:out value="${dentist.value.dentistID}"/>" data-aos="flip-left" data-aos-duration="1500" class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
+                                    <div class="card doctor--box">
+                                        <img src="data:image/png;base64,<c:out value="${dentist.key.imageAvatar}"/>" class="card-img-top" alt="Qualified Doctor">
+                                        <div class="card-body doctor-body">
+                                            <h3><c:out value="${dentist.key.fullName}"/></h3>
+                                            <p class="card-text"><c:out value="${dentist.value.skill}"/></p>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div data-aos="flip-left" data-aos-duration="1500"
-                                class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                                <div class="card doctor--box">
-                                    <img src="./images/people-02.jpg" class="card-img-top" alt="Qualified Doctor">
-                                    <div class="card-body doctor-body">
-                                        <h3>Michél Anderson</h3>
-                                        <small>Pediatric Dentist</small>
-                                        <p class="card-text">Enthusiastically mesh long-term high-impact infrastructures
-                                            vis-a-vis efficient customer service leadership rather than prospective
-                                            experiences.
-                                        </p>
-                                        <div class="card-social">
-                                            <div class="social-link">
-                                                <a href="" class="card-social__facebook">
-                                                    <i class="fa-brands fa-facebook-f"></i>
-                                                </a>
-                                            </div>
-                                            <div class="social-link">
-                                                <a href="" class="card-social__twitter">
-                                                    <i class="fa-brands fa-twitter"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div data-aos="flip-left" data-aos-duration="1500"
-                                class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                                <div class="card doctor--box">
-                                    <img src="./images/people-03.jpg" class="card-img-top" alt="Qualified Doctor">
-                                    <div class="card-body doctor-body">
-                                        <h3>Pediatric Dentist</h3>
-                                        <small>Senior Prosthodontist</small>
-                                        <p class="card-text">Objectively integrate enterprise-wide strategic theme areas
-                                            with
-                                            good infrastructures. Interactively productize premium technologies.</p>
-                                        <div class="card-social">
-                                            <div class="social-link">
-                                                <a href="" class="card-social__facebook">
-                                                    <i class="fa-brands fa-facebook-f"></i>
-                                                </a>
-                                            </div>
-                                            <div class="social-link">
-                                                <a href="" class="card-social__twitter">
-                                                    <i class="fa-brands fa-twitter"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div data-aos="flip-left" data-aos-duration="1500"
-                                class="d-flex justify-content-center pb-5 pb-lg-0 col-md-6 col-lg-3">
-                                <div class="card doctor--box">
-                                    <img src="./images/people-04.jpg" class="card-img-top" alt="Qualified Doctor">
-                                    <div class="card-body doctor-body">
-                                        <h3>Carlie Addison</h3>
-                                        <small>Dental Nurse</small>
-                                        <p class="card-text">Uniquely deploy cross-unit benefits with wireless testing
-                                            procedures. Build backward compatible relationships whereas tactical paradigms.
-                                        </p>
-                                        <div class="card-social">
-                                            <div class="social-link">
-                                                <a href="" class="card-social__facebook">
-                                                    <i class="fa-brands fa-facebook-f"></i>
-                                                </a>
-                                            </div>
-                                            <div class="social-link">
-                                                <a href="" class="card-social__twitter">
-                                                    <i class="fa-brands fa-twitter"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                                </a>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>
@@ -247,10 +153,9 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- AOS  -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <!-- Malihu Custom Scrollbar -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
         <!-- Script  -->
         <script src="./js/user/UserRoot.js"></script>
+        <script src="./js/user/NavBar.js"></script>
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
         <script>

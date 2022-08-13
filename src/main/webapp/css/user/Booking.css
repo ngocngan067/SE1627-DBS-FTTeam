@@ -2,20 +2,31 @@
     cursor: pointer;
 }
 
+.booking-body p {
+    margin-bottom: unset;
+}
+
+.booking-body .card-appointment {
+    -webkit-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+    box-shadow: 4px 4px 10px -1px rgba(118, 183, 243, 1);
+}
+
 .booking-body .title {
-    font-size: 25;
-    font-weight: 500;
+    font-size: 32px;
+    font-weight: 600;
     position: relative;
+    text-align: center;
 }
 
 .booking-body .title::before {
     content: "";
     position: absolute;
-    height: 3px;
-    width: 40px;
+    height: 4px;
+    width: 16.2rem;
     background: linear-gradient(135deg, #76B7F3, #EE78FA);
-    left: 0;
-    bottom: 0;
+    bottom: -8px;
+    border-radius: 4px;
 }
 
 .booking-body .booking-backgound {
@@ -39,19 +50,15 @@
     background-color: linear-gradient(135deg, #76B7F3, #EE78FA);
 }
 
-#form-1 #date-div #datepicker {
-    height: 100%;
-    width: 100%;
-}
-
 #form-1 .button {
     height: 45px;
-    margin: 45px 0 35px 0;
+    margin: 22px 0 36px 0;
+    text-align: center;
 }
 
 #form-1 .button input {
     height: 100%;
-    width: 100%;
+    width: 12rem;
     outline: none;
     color: #fff;
     border: none;
@@ -80,16 +87,39 @@
     font-size: 25px;
 }
 
+.setting-form_input #gender-icon-check,
+.setting-form_input #gender-icon-error,
+.setting-form_input #dateOfBirth-icon-check,
+.setting-form_input #dateOfBirth-icon-error,
+.setting-form_input #inputService-icon-check,
+.setting-form_input #inputService-icon-error,
+.setting-form_input #inputDoctor-icon-check,
+.setting-form_input #inputDoctor-icon-error,
+.setting-form_input #dateOfAppointment-icon-check,
+.setting-form_input #dateOfAppointment-icon-error {
+    right: 20px;
+}
+
 .setting-form_input #fullName-icon-check,
 .setting-form_input #phoneNumber-icon-check,
-.setting-form_input #address-icon-check {
+.setting-form_input #address-icon-check,
+.setting-form_input #gender-icon-check,
+.setting-form_input #dateOfBirth-icon-check,
+.setting-form_input #inputService-icon-check,
+.setting-form_input #inputDoctor-icon-check,
+.setting-form_input #dateOfAppointment-icon-check {
     display: none;
     color: #23ad5c;
 }
 
 .setting-form_input #fullName-icon-error,
 .setting-form_input #phoneNumber-icon-error,
-.setting-form_input #address-icon-error {
+.setting-form_input #address-icon-error,
+.setting-form_input #gender-icon-error,
+.setting-form_input #dateOfBirth-icon-error,
+.setting-form_input #inputService-icon-error,
+.setting-form_input #inputDoctor-icon-error,
+.setting-form_input #dateOfAppointment-icon-error {
     display: none;
     color: #ff4757;
 }
@@ -97,7 +127,7 @@
 .setting-form_input .form-input {
     width: 100%;
     font-size: 15px;
-    height: 35px;
+    height: 38px;
     border: 1px solid rgba(209, 213, 219, 1);
     border-radius: .25rem;
     padding-left: 10px;
@@ -113,3 +143,191 @@
     color: red;
     font-weight: 500;
 }
+
+.booking-body .slot--note {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 20px;
+}
+
+.booking-body .slot--note__title p {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.booking-body .slot--note__title span {
+    color: #EE78FA;
+}
+
+.booking-body .slot__color {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.booking-body .slot__color .color {
+    height: 15px;
+    width: 22px;
+    border-radius: 4px;
+}
+
+.booking-body .slot__color .color1 {
+    background-color: #eeeeee;
+    pointer-events: none;
+}
+
+.booking-body .slot__color .color2 {
+    background-color: #cfeadd;
+}
+
+.booking-body .slot__color .color3 {
+    background-color: #ff6600;
+}
+
+.booking-body .slot__color p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.booking-body .slot--booking .time--booking {
+    text-align: center;
+}
+
+.booking-body .slot--booking .time--booking .pick {
+    transition: all .5s;
+}
+
+#error-box .error-popup {
+    position: fixed;
+    z-index: 999999;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    transition: top 0s 0.2s ease-in-out, opacity 0.2s 0s ease-in-out, transform 0.2s 0s ease-in-out;
+    transform: scale(1.2);
+}
+
+.error-popup .wrapper {
+    position: absolute;
+    width: 100%;
+    top: 43%;
+    left: 50%;
+    background: #fff;
+    border-radius: 15px;
+    transform: translate(-50%, -50%);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    padding: 30px;
+    max-width: 400px;
+}
+
+.error-popup .content,
+.error-popup .content .warn-icon,
+.error-popup .warn-icon span,
+.error-popup .content .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-popup .content {
+    flex-direction: column;
+}
+
+.error-popup .warn-icon span {
+    font-size: 60px;
+    color: red;
+    font-weight: bold;
+    height: 80px;
+    width: 80px;
+    border: 4px solid red;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.error-popup .content h2 {
+    margin: 1rem 0;
+    font-size: 1.7rem;
+}
+
+.error-popup .content p {
+    font-size: .9rem;
+    text-align: center;
+}
+
+.error-popup .content .buttons #login-btn {
+    width: 85px;
+    height: 36px;
+    border-radius: 5px;
+    margin-right: 15px;
+    color: #fff;
+    background: #6978F0;
+    font-size: 15px;
+    z-index: 1;
+    overflow: hidden;
+    position: relative;
+    border: none;
+    outline: none;
+}
+
+.error-popup .content .buttons #login-btn::after {
+    content: '';
+    z-index: -1;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    position: absolute;
+    top: -50%;
+    bottom: -50%;
+    width: 1.25em;
+    transform: translate3d(-640%, 0, 0) rotate(35deg);
+}
+
+.error-popup .content .buttons #login-btn:hover::after {
+    transition: transform 0.45s ease-in-out;
+    transform: translate3d(200%, 0, 0) rotate(35deg);
+}
+
+.error-popup .content .buttons #cancel-btn {
+    width: 85px;
+    height: 36px;
+    border-radius: 5px;
+    color: #6978F0;
+    font-size: 15px;
+    z-index: 1;
+    border: 1px solid #6978F0;
+    outline: none;
+    background: none;
+}
+
+.error-popup .content .buttons #cancel-btn:hover {
+    opacity: 0.8;
+}
+
+/*------------------------------------------------------- CLASS CHỌN KHUNG GIỜ VÀ MÀU  -------------------------------------------------------*/
+.booking-body .slot--booking .time--booking .pick:hover {
+    background-color: #ff6600;
+    color: #fff;
+    pointer-events: painted;
+    cursor: pointer;
+}
+
+.booking-body .no-choose {
+    background-color: #eeeeee;
+    pointer-events: none;
+}
+
+.booking-body .can-choose {
+    background-color: #cfeadd;
+}
+
+.booking-body .still-choose {
+    background-color: #ff6600;
+    color: #fff;
+}
+
+/*------------------------------------------------------- class chọn khung giờ và màu  -------------------------------------------------------*/

@@ -1,0 +1,504 @@
+.doctor-detail {
+    height: 1600px;
+}
+
+.doctor-detail .container-fluid {
+    background-size: cover;
+    height: 568px;
+}
+
+.doctor-detail .background {
+    background-size: cover;
+    height: 200px;
+    padding: 0;
+}
+
+.doctor-detail .background .background-color {
+    height: 200px;
+    background-color: rgba(0, 38, 255, 0.7);
+}
+
+.doctor-detail .container {
+    position: relative;
+    top: -744px;
+}
+
+.doctor-detail .doctor-name {
+    font-weight: 500 !important;
+    color: #104099;
+    font-size: 50px;
+}
+
+.doctor-detail .doctor-name b {
+    position: relative;
+    font-size: 100px;
+    left: -7px;
+    top: -20px;
+}
+
+.doctor-detail .work-box .consult {
+    font-size: 30px;
+    font-weight: 500;
+    color: #00AFA8;
+}
+
+.doctor-detail .calling-us .icon-calling-us {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.doctor-detail .calling-us .icon-calling-us i {
+    border: 2px solid #00AF89;
+    padding: 19px 20px 20px 24px;
+    font-size: 50px;
+    border-radius: 50px;
+    width: 90px;
+    color: #00AF89;
+}
+
+.doctor-detail .calling-us .phone-number .text-calling-us {
+    font-size: 25px;
+}
+
+.doctor-detail .calling-us .phone-number .phone-number-1,
+.doctor-detail .calling-us .phone-number .phone-number-2 {
+    margin: 0 auto;
+}
+
+.doctor-detail .email-us .icon-email-us {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.doctor-detail .email-us .icon-email-us i {
+    border: 2px solid #104099;
+    padding: 15px 30px 20px 19px;
+    font-size: 50px;
+    border-radius: 50px;
+    width: 90px;
+    color: #104099;
+}
+
+.doctor-detail .email-us .email-address .email-address-1,
+.doctor-detail .email-us .email-address .email-address-2 {
+    margin: 0 auto;
+}
+
+.doctor-detail .email-us .email-address .text-email-us {
+    font-size: 25px;
+}
+
+.doctor-detail .dr-year-experience .icon-year-experience {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.doctor-detail .dr-year-experience .icon-year-experience i {
+    border: 2px solid #00AF89;
+    padding: 15px 30px 20px 19px;
+    font-size: 50px;
+    border-radius: 50px;
+    width: 90px;
+    color: #00AF89;
+}
+
+.doctor-detail .dr-year-experience .year-experience .text-year-experience {
+    font-size: 25px;
+}
+
+.doctor-detail .table-hr {
+    height: 3px !important;
+}
+
+.doctor-detail .work-box {
+    padding: 20px;
+    box-sizing: border-box;
+    border: 10px solid #E1E8F0;
+}
+
+.doctor-detail .block-quote {
+    border-top: 2px solid #00AFA8;
+    border-bottom: 2px solid #00AFA8;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px
+}
+
+.doctor-detail .fadeIn {
+    animation: fadeIn 0.2s forwards;
+}
+
+.doctor-detail .fadeInExplain {
+    animation: fadeIn 1.5s forwards;
+}
+
+.doctor-detail .fadeOutExplain {
+    animation: fadeOut 1.5s forwards;
+}
+
+.doctor-detail .slideInLeft {
+    animation: slideInLeft 1.5s forwards;
+}
+
+.doctor-detail .slideInRight {
+    animation: slideInRight 1.5s forwards;
+}
+
+.doctor-detail .slideOutLeft {
+    animation: slideOutLeft 1.5s forwards;
+}
+
+.doctor-detail .slideOutRight {
+    animation: slideOutRight 1.5s forwards;
+}
+
+@keyframes moveOn {
+    0% {
+        position: relative;
+        top: 0;
+        box-shadow: 0px 0px 0px rgba(0, 0, 0, 1);
+    }
+
+    100% {
+        position: relative;
+        top: -5px;
+        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideOutLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-30%);
+    }
+}
+
+@keyframes slideOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(30%);
+    }
+}
+
+@media (max-width: 1399px) {
+    .doctor-detail img {
+        position: relative;
+        width: 116.7%;
+        right: 20px;
+    }
+}
+
+@media (max-width: 1199px) {
+    .doctor-detail {
+        height: 1630px;
+    }
+
+    .doctor-detail .container-fluid {
+        height: 545px;
+    }
+
+    .doctor-detail .background {
+        height: 200px;
+    }
+
+    .doctor-detail .container {
+        top: -620px;
+    }
+
+    .doctor-detail .mx-3 {
+        margin-right: 0 !important;
+    }
+
+    .doctor-detail .consult {
+        font-size: 25px;
+    }
+
+    .doctor-detail .calling-us .icon-calling-us .fa-mobile-button {
+        font-size: 20px;
+        padding: 19px 20px 20px 23px;
+    }
+
+    .doctor-detail .calling-us .phone-number .text-calling-us {
+        font-size: 20px;
+    }
+
+    .doctor-detail .email-us .icon-email-us .fa-envelope-open-text {
+        font-size: 20px;
+        width: 60px;
+        padding: 17px 30px 20px 18px;
+    }
+
+    .doctor-detail .email-us .email-address .text-email-us {
+        font-size: 20px
+    }
+
+    .doctor-detail .dr-year-experience .icon-year-experience .fa-briefcase {
+        font-size: 20px;
+        width: 62px;
+        padding: 19px 30px 20px 19px;
+    }
+
+    .doctor-detail .dr-year-experience .year-experience .text-year-experience {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 991px) {
+    .doctor-detail {
+        height: 2700px;
+    }
+
+    .doctor-detail .background {
+        height: 200px;
+    }
+
+    .doctor-detail img {
+        width: 63%;
+        right: 0;
+        left: 140px;
+    }
+
+    .doctor-detail .consult {
+        font-size: 50px;
+    }
+
+    .doctor-detail .calling-us .icon-calling-us {
+        justify-content: center;
+    }
+
+    .doctor-detail .calling-us .icon-calling-us .fa-mobile-button {
+        font-size: 110px;
+        padding: 19px 20px 20px 33px;
+        width: 155px;
+        border-radius: 160px;
+    }
+
+    .doctor-detail .calling-us .phone-number .text-calling-us {
+        font-size: 40px;
+    }
+
+    .doctor-detail .calling-us .phone-number .phone-number-1,
+    .doctor-detail .calling-us .phone-number .phone-number-2 {
+        font-size: 25px;
+    }
+
+    .doctor-detail .email-us .icon-email-us {
+        justify-content: center;
+    }
+
+    .doctor-detail .email-us .icon-email-us .fa-envelope-open-text {
+        font-size: 100px;
+        width: 155px;
+        padding: 20px 15px 32px 25px;
+        border-radius: 160px;
+    }
+
+    .doctor-detail .email-us .email-address .text-email-us {
+        font-size: 40px;
+    }
+
+    .doctor-detail .email-us .email-address .email-address-1,
+    .doctor-detail .email-us .email-address .email-address-2 {
+        font-size: 25px;
+    }
+
+    .doctor-detail .dr-year-experience .icon-year-experience {
+        justify-content: center;
+    }
+
+    .doctor-detail .dr-year-experience .icon-year-experience .fa-briefcase {
+        font-size: 100px;
+        width: 155px;
+        padding: 25px 15px 29px 25px;
+        border-radius: 160px;
+    }
+
+    .doctor-detail .dr-year-experience .year-experience .text-year-experience {
+        font-size: 39px;
+    }
+
+    .doctor-detail .dr-year-experience .year-experience .number-year-experience {
+        font-size: 25px;
+    }
+
+    .doctor-detail .col-4,
+    .doctor-detail .col-8 {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .doctor-detail {
+        height: 2800px;
+    }
+
+    .doctor-detail .container {
+        top: -460px;
+    }
+
+    .doctor-detail .consult {
+        font-size: 40px;
+    }
+
+    .doctor-detail .calling-us .icon-calling-us .fa-mobile-button {
+        font-size: 70px;
+        padding: 19px 20px 20px 27px;
+        width: 110px;
+    }
+
+    .doctor-detail .calling-us .phone-number .text-calling-us {
+        font-size: 25px;
+    }
+
+    .doctor-detail .calling-us .phone-number .phone-number-1,
+    .doctor-detail .calling-us .phone-number .phone-number-2 {
+        font-size: 20px;
+    }
+
+    .doctor-detail .email-us .icon-email-us .fa-envelope-open-text {
+        font-size: 70px;
+        width: 120px;
+        padding: 20px 15px 25px 24px;
+    }
+
+    .doctor-detail .email-us .email-address .text-email-us {
+        font-size: 25px;
+    }
+
+    .doctor-detail .email-us .email-address .email-address-1,
+    .doctor-detail .email-us .email-address .email-address-2 {
+        font-size: 20px;
+    }
+
+    .doctor-detail .dr-year-experience .icon-year-experience .fa-briefcase {
+        font-size: 70px;
+        width: 120px;
+        padding: 23px 15px 23px 24px;
+    }
+
+    .doctor-detail .dr-year-experience .year-experience .text-year-experience {
+        font-size: 25px;
+    }
+
+    .doctor-detail .dr-year-experience .year-experience .number-year-experience {
+        font-size: 20px;
+    }
+
+    .doctor-detail .experience {
+        top: -435px;
+        height: 765px;
+    }
+
+    .doctor-detail .experience .background-color {
+        height: 765px !important;
+    }
+
+    .doctor-detail .experience .container {
+        top: -715px;
+    }
+
+    .doctor-detail .experience .container .row {
+        width: 555px;
+    }
+
+    .doctor-detail .experience button {
+        font-size: 14px;
+        width: 130px;
+    }
+
+    .doctor-detail .experience .medical {
+        width: 140px;
+    }
+}
+
+@media (max-width: 575px) {
+    .doctor-detail {
+        height: 2450px;
+    }
+
+    .doctor-detail .container-fluid {
+        height: 300px;
+    }
+
+    .doctor-detail .background {
+        height: 200px;
+    }
+
+    .doctor-detail .container {
+        top: -491px;
+    }
+
+    .doctor-detail img {
+        left: 95px;
+        width: 347px;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .doctor-detail .container {
+        top: -420px;
+    }
+
+    .doctor-detail img {
+        left: 80px;
+        width: 297px;
+    }
+}

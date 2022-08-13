@@ -8,12 +8,13 @@ import lombok.Setter;
 public class Services {
 
     private String serviceID, serviceName, imageService, descriptionService, serviceTypeID;
-    private int servicePrice, discount, serviceStatus;
+    private int discount, serviceStatus;
+    private double servicePrice;
 
     public Services() {
     }
 
-    public Services(String serviceID, String serviceName, String imageService, String descriptionService, String serviceTypeID, int servicePrice, int discount, int serviceStatus) {
+    public Services(String serviceID, String serviceName, String imageService, String descriptionService, String serviceTypeID, double servicePrice, int discount, int serviceStatus) {
         this.serviceID = serviceID;
         this.serviceName = serviceName;
         this.imageService = imageService;

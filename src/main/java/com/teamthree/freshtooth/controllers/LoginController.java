@@ -1,14 +1,17 @@
 package com.teamthree.freshtooth.controllers;
 
+import com.restfb.types.User;
 import com.teamthree.freshtooth.dbo.AccountFacade;
 import com.teamthree.freshtooth.dbo.NotificationFacade;
-import com.teamthree.freshtooth.dbo.ServiceTypeFacade;
 import com.teamthree.freshtooth.models.Account;
 import com.teamthree.freshtooth.models.AccountError;
+import com.teamthree.freshtooth.models.GoogleAccount;
 import com.teamthree.freshtooth.models.Notification;
-import com.teamthree.freshtooth.models.ServiceType;
+import com.teamthree.freshtooth.services.RestFacebook;
+import com.teamthree.freshtooth.services.RestGoogle;
 import com.teamthree.freshtooth.utils.CalculatorTime;
 import com.teamthree.freshtooth.utils.Encrypt;
+import com.teamthree.freshtooth.utils.FunctionRandom;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -29,9 +32,9 @@ public class LoginController extends HttpServlet {
 
     private static final String LOGIN_ADMIN = "LOGIN_ADMIN";
     private static final String LOGIN_USER = "LOGIN_USER";
+    private static final String LOGIN_DENTIST = "LOGIN_DENTIST";
     private static final String LOGIN_ACCOUNT_ERROR = "LOGIN_ACCOUNT_ERROR";
     private static final String NOTIFICATION_LIST = "NOTIFICATION_LIST";
-    private static final String SERVICE_TYPE_LIST = "SERVICE_TYPE_LIST";
     private static final String TIME_NOTIFICATION = "TIME_NOTIFICATION";
     private static final String COUNT_NOTIFICATION_NOT_READ = "COUNT_NOTIFICATION_NOT_READ";
     private static final String REMEMBER_USER = "USER_FRESHTOOTH";
@@ -44,11 +47,91 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        HttpSession session = request.getSession();
-        session.setAttribute(VALUE_LOGIN, "VALUE_LOGIN");
+        try {
+            HttpSession session = request.getSession();
+            session.removeAttribute("USER_FULLNAME");
+            String codeGoogle = request.getParameter("code");
+            String codeFacebook = request.getParameter("code");
+            String accessToken = "", accessTokenFacebook = "";
 
-        RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/Login.jsp");
-        requestDispatcher.forward(request, response);
+            if (codeGoogle != null || codeFacebook != null) {
+                if (codeGoogle != null) {
+                    accessToken = RestGoogle.getGoogleToken(codeGoogle);
+                } else {
+                    accessTokenFacebook = RestFacebook.getToken(codeFacebook);
+                }
+                
+                Account account = new Account();
+
+                if (!accessToken.equals("")) {
+                    GoogleAccount googleAccount = RestGoogle.getGoogleUserInfo(accessToken);
+
+                    account.setUserID(googleAccount.getId());
+                    account.setUserEmail(googleAccount.getEmail());
+                    account.setColorAvatar(FunctionRandom.colorAvatar());
+                    char getFirstCharacter = googleAccount.getEmail().charAt(0);
+                    account.setDefaultAvatar(Character.toString(getFirstCharacter));
+                    account.setUserRole(0);
+                    account.setUserStatus(1);
+                    
+                } else if (!accessTokenFacebook.equals("")) {
+                    User user = RestFacebook.getUserInfo(accessTokenFacebook);
+                    
+                    account.setUserID(user.getId());
+                    account.setUserEmail(user.getEmail());
+                    account.setColorAvatar(FunctionRandom.colorAvatar());
+                    char getFirstCharacter = user.getEmail().charAt(0);
+                    account.setDefaultAvatar(Character.toString(getFirstCharacter));
+                    account.setUserRole(0);
+                    account.setUserStatus(1);
+                }
+
+                AccountFacade accountFacade = new AccountFacade();
+                Account checkLearnerAccount = accountFacade.checkAccount(account, "Login");
+
+                if (checkLearnerAccount == null) {
+                    accountFacade.addAccount(account, "AddAccountGoogle");
+                    session.setAttribute(LOGIN_USER, account);
+                } else {
+                    boolean addAccountGoogle = false;
+                    char[] charSearch = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                        'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+                        'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd',
+                        'e', 'f', 'g', 'h', 'i', 'k', 'l', 'm', 'n', 'o', 'p',
+                        'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
+                    for (int i = 0; i < checkLearnerAccount.getUserID().length(); i++) {
+                        char chr = checkLearnerAccount.getUserID().charAt(i);
+                        for (int j = 0; j < charSearch.length; j++) {
+                            if (charSearch[j] == chr) {
+                                addAccountGoogle = true;
+                            }
+                        }
+                    }
+
+                    if (addAccountGoogle == true) {
+                        accountFacade.addAccount(account, "AddAccountGoogle");
+                        session.setAttribute(LOGIN_USER, account);
+                    } else {
+                        session.setAttribute(LOGIN_USER, checkLearnerAccount);
+                    }
+
+                }
+
+                response.sendRedirect(request.getContextPath() + "/home");
+            } else {
+                session.setAttribute(VALUE_LOGIN, "VALUE_LOGIN");
+
+                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/Login.jsp");
+                requestDispatcher.forward(request, response);
+            }
+
+        } catch (IOException | SQLException | ServletException e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/error");
+        }
+
     }
 
     @Override
@@ -81,7 +164,7 @@ public class LoginController extends HttpServlet {
                 accountError.setPasswordError("Please enter your password!");
             } else {
                 AccountFacade checkLogin = new AccountFacade();
-                account = checkLogin.checkAccount(email);
+                account = checkLogin.checkAccount(email, "Login");
                 if (account == null) {
                     hasError = true;
                     accountError.setEmailError("Account does not exist!");
@@ -117,10 +200,8 @@ public class LoginController extends HttpServlet {
                 switch (account.getUserRole()) {
                     case 0:
                         NotificationFacade checkNotification = new NotificationFacade();
-                        ServiceTypeFacade serviceTypeFacade = new ServiceTypeFacade();
-                        
+
                         List<Notification> notificationList = checkNotification.getAllNotification(account.getUserID());
-                        List<ServiceType> serviceTypeList = serviceTypeFacade.getAllServiceType();
 
                         if (notificationList.isEmpty()) {
                             session.setAttribute(NOTIFICATION_LIST, null);
@@ -140,16 +221,9 @@ public class LoginController extends HttpServlet {
                                 session.setAttribute(COUNT_NOTIFICATION_NOT_READ, totalNotification);
                             }
                         }
-                        
-                        if (serviceTypeList.isEmpty()) {
-                            session.setAttribute(SERVICE_TYPE_LIST, null);
-                        } else {
-                            session.setAttribute(SERVICE_TYPE_LIST, serviceTypeList);
-                        }
 
                         session.setAttribute(LOGIN_USER, account);
                         session.removeAttribute(VALUE_LOGIN);
-                        session.setMaxInactiveInterval(500);
                         String uri = (String) session.getAttribute("uri");
                         if (uri != null) {
                             response.sendRedirect(uri);
@@ -159,10 +233,11 @@ public class LoginController extends HttpServlet {
                         break;
                     case 1:
                         session.setAttribute(LOGIN_ADMIN, account);
-                        session.setMaxInactiveInterval(500);
                         response.sendRedirect(request.getContextPath() + "/admin/dashboard");
                         break;
                     case 2:
+                        session.setAttribute(LOGIN_DENTIST, account);
+                        response.sendRedirect(request.getContextPath() + "/dentist/appointment");
                         break;
                 }
             }

@@ -193,6 +193,7 @@
     display: block;
     overflow: hidden;
     padding: 15px 10px;
+    color: black;
 }
 
 .ready-btn {
@@ -306,4 +307,8 @@
 
 .left-side-tags h4 {
     margin-bottom: 15px;
+}
+
+.blog-text .more {
+    display: none;
 }

@@ -15,7 +15,7 @@ public class NotificationFacade extends AbstractNotification<Notification> {
     private ResultSet resultSet = null;
     private static final String SQL_GET_ALL_NOTIFICATION = "SELECT * FROM Notify WHERE UserID = ?";
     private static final String SQL_INSERT_NOTIFICATION = "INSERT INTO Notify(NotifyID, UserID, NotifyType) VALUES(?, ?, ?)";
-    private static final String SQL_UPDATE_NOTIFICATION = "UPDATE Notify SET NotifyStatus = 1 WHERE NotifyID = ? AND UserID = ?";
+    private static final String SQL_UPDATE_NOTIFICATION = "UPDATE Notify SET NotifyStatus = 1 WHERE UserID = ?";
     private static final String SQL_GET_TOTAL_NOTIFICATION = "SELECT COUNT(*) FROM Notify WHERE UserID = ? AND NotifyStatus = 0";
 
     private Notification getInfoNotificationFromSQL(ResultSet resultSet) throws SQLException {
@@ -79,12 +79,11 @@ public class NotificationFacade extends AbstractNotification<Notification> {
     }
 
     @Override
-    protected boolean updateNotification(Connection connection, Object notifyID, Object userID) throws SQLException {
+    protected boolean updateNotification(Connection connection, Object userID) throws SQLException {
         try {
             if (connection != null) {
                 preparedStatement = connection.prepareStatement(SQL_UPDATE_NOTIFICATION);
-                preparedStatement.setString(1, notifyID.toString());
-                preparedStatement.setString(2, userID.toString());
+                preparedStatement.setString(1, userID.toString());
                 preparedStatement.executeUpdate();
                 return true;
             }

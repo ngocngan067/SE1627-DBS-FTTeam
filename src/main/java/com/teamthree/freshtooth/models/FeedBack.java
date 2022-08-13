@@ -8,16 +8,16 @@ import lombok.Setter;
 @Setter
 public class FeedBack {
 
-    private String feedBackID, serviceID, patientID, feedBackContent;
+    private String feedBackID, bookID, patientID, feedBackContent;
     private int numberRating;
     private Timestamp feedBackCreated;
 
     public FeedBack() {
     }
 
-    public FeedBack(String feedBackID, String serviceID, String patientID, String feedBackContent, int numberRating, Timestamp feedBackCreated) {
+    public FeedBack(String feedBackID, String bookID, String patientID, String feedBackContent, int numberRating, Timestamp feedBackCreated) {
         this.feedBackID = feedBackID;
-        this.serviceID = serviceID;
+        this.bookID = bookID;
         this.patientID = patientID;
         this.feedBackContent = feedBackContent;
         this.numberRating = numberRating;

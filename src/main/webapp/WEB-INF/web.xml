@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>SecurityFilterUser</filter-name>
+        <filter-class>com.teamthree.freshtooth.filters.SecurityFilterUser</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilterUser</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>SecurityFilterAdmin</filter-name>
+        <filter-class>com.teamthree.freshtooth.filters.SecurityFilterAdmin</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilterAdmin</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>SecurityFilterDentist</filter-name>
+        <filter-class>com.teamthree.freshtooth.filters.SecurityFilterDentist</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecurityFilterDentist</filter-name>
+        <url-pattern>/dentist/*</url-pattern>
+    </filter-mapping>
     <session-config>
         <session-timeout>
             30
@@ -23,6 +47,30 @@
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleController</servlet-name>
+        <url-pattern>/login-google</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>LoginFacebookController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.LoginController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>LoginFacebookController</servlet-name>
+        <url-pattern>/login-facebook</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ForgotPasswordController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ForgotPasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordController</servlet-name>
+        <url-pattern>/forgot-password</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>RegisterController</servlet-name>
@@ -113,6 +161,86 @@
         <url-pattern>/booking</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>HistoryAllController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.HistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryAllController</servlet-name>
+        <url-pattern>/history-booking-all</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HistoryController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.HistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryController</servlet-name>
+        <url-pattern>/history-booking</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HistoryConfirmedController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.HistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryConfirmedController</servlet-name>
+        <url-pattern>/history-booking-confirmed</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HistoryCompletedController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.HistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryCompletedController</servlet-name>
+        <url-pattern>/history-booking-completed</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>HistoryCancelledController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.HistoryController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HistoryCancelledController</servlet-name>
+        <url-pattern>/history-booking-cancelled</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServiceController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ServiceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceController</servlet-name>
+        <url-pattern>/service</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>NotificationController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.NotificationController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>NotificationController</servlet-name>
+        <url-pattern>/notification</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServiceDetailController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ServiceDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceDetailController</servlet-name>
+        <url-pattern>/service-detail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>DentistDetailController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.DentistDetailController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DentistDetailController</servlet-name>
+        <url-pattern>/dentist-detail</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>PolicyController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.PolicyController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PolicyController</servlet-name>
+        <url-pattern>/policy</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>DashBoardController</servlet-name>
         <servlet-class>com.teamthree.freshtooth.controllers.DashBoardController</servlet-class>
     </servlet>
@@ -137,6 +265,22 @@
         <url-pattern>/admin/dentist-management</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>AddDentistController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.DentistManagementController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddDentistController</servlet-name>
+        <url-pattern>/admin/add-dentist</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditDentistController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.DentistManagementController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditDentistController</servlet-name>
+        <url-pattern>/admin/edit-dentist</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>ServiceManagementController</servlet-name>
         <servlet-class>com.teamthree.freshtooth.controllers.ServiceController</servlet-class>
     </servlet>
@@ -151,5 +295,77 @@
     <servlet-mapping>
         <servlet-name>AddServiceController</servlet-name>
         <url-pattern>/admin/add-service</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditServiceController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ServiceController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditServiceController</servlet-name>
+        <url-pattern>/admin/edit-service</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ServiceTypeManagementController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ServiceTypeManagementController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServiceTypeManagementController</servlet-name>
+        <url-pattern>/admin/service-type-management</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AddServiceTypeController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ServiceTypeManagementController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServiceTypeController</servlet-name>
+        <url-pattern>/admin/add-service-type</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditServiceTypeController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ServiceTypeManagementController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditServiceTypeController</servlet-name>
+        <url-pattern>/admin/edit-service-type</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AppointmentController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.AppointmentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AppointmentController</servlet-name>
+        <url-pattern>/dentist/appointment</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>TimeLineController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.TimeLineController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TimeLineController</servlet-name>
+        <url-pattern>/dentist/time-line</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>FeedbackController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.FeedbackController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FeedbackController</servlet-name>
+        <url-pattern>/dentist/feedback</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InfoDentistProfileController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.InfoProfileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InfoDentistProfileController</servlet-name>
+        <url-pattern>/dentist/info-profile</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ChangePasswordDentistController</servlet-name>
+        <servlet-class>com.teamthree.freshtooth.controllers.ChangePasswordController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordDentistController</servlet-name>
+        <url-pattern>/dentist/change-password</url-pattern>
     </servlet-mapping>
 </web-app>

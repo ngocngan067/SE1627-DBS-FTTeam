@@ -12,8 +12,19 @@ public class InfoProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/user/InfoProfile.jsp");
-        requestDispatcher.forward(request, response);
+        try {
+            String urlServlet = request.getServletPath();
+
+            if (urlServlet.equals("/info-profile")) {
+                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/user/InfoProfile.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/dentist/InfoProfile.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        } catch (IOException | ServletException e) {
+            response.sendRedirect(request.getContextPath() + "/error");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

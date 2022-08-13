@@ -28,9 +28,16 @@ public class FunctionRandom {
         for (int i = 0; i < randomString.length(); i++) {
             char character = randomString.charAt(i);
 
-            if (((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z') || (character >= '0' && character <= '9')) && (length > 0)) {
-                stringBuffer.append(character);
-                length--;
+            if (stringBuffer.toString().equals("")) {
+                if (((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z')) && (length > 0)) {
+                    stringBuffer.append(character);
+                    length--;
+                }
+            } else {
+                if (((character >= 'a' && character <= 'z') || (character >= 'A' && character <= 'Z') || (character >= '0' && character <= '9')) && (length > 0)) {
+                    stringBuffer.append(character);
+                    length--;
+                }
             }
         }
 

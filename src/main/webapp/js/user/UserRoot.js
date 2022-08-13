@@ -53,7 +53,8 @@ function BlockScrollInUserMenu() {
 }
 
 /* Search With MicroPhone */
-function activeMicrophone() {
+function activeMicrophone(urlServlet) {
+    const viewMore = document.querySelector(".view-more");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition,
             microphoneHeader = document.querySelector("#microphone-header__prompt"),
             microphoneFooterLabel = document.querySelector("#microphone-footer-label"),
@@ -76,20 +77,35 @@ function activeMicrophone() {
 
         recognition.onresult = (result) => {
             microphoneBodyText.innerHTML = `${result.results[0][0].transcript}`;
-            console.log(`${result.results[0][0].transcript}`);
+
+            $.ajax({
+                url: urlServlet,
+                type: "get",
+                data: {
+                    search: `${result.results[0][0].transcript}`
+                },
+                success: function (data) {
+                    const returnList = document.querySelector("#return-list");
+                    returnList.innerHTML = data;
+                    if (viewMore !== null) {
+                        viewMore.style.display = "none";
+                    }
+                    hideMicrophoneBox();
+                }
+            });
         };
 
         recognition.start();
     }
 }
 
-function showMicrophoneBox() {
+function showMicrophoneBox(urlServlet) {
     const bodyForMicrophoneBox = document.getElementsByTagName("BODY")[0];
     const microphoneWrapper = document.querySelector("#microphone-wrapper");
 
     microphoneWrapper.classList.add("active");
     bodyForMicrophoneBox.style.overflowY = "hidden";
-    activeMicrophone();
+    activeMicrophone(urlServlet);
 }
 
 function hideMicrophoneBox() {
@@ -103,7 +119,8 @@ function hideMicrophoneBox() {
 /* End Search With MicroPhone */
 
 /* Search With MicroPhone In Mobile */
-function activeMicrophoneMobile() {
+function activeMicrophoneMobile(urlServlet) {
+    const viewMore = document.querySelector(".view-more");
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition,
             microphoneHeader = document.querySelector("#mobile-header__prompt"),
             microphoneFooterLabel = document.querySelector("#mobile__microphone-footer-label"),
@@ -126,20 +143,35 @@ function activeMicrophoneMobile() {
 
         recognition.onresult = (result) => {
             microphoneBodyText.innerHTML = `${result.results[0][0].transcript}`;
-            console.log(`${result.results[0][0].transcript}`);
+
+            $.ajax({
+                url: urlServlet,
+                type: "get",
+                data: {
+                    search: `${result.results[0][0].transcript}`
+                },
+                success: function (data) {
+                    const returnList = document.querySelector("#return-list");
+                    returnList.innerHTML = data;
+                    if (viewMore !== null) {
+                        viewMore.style.display = "none";
+                    }
+                    hideMicrophoneBox();
+                }
+            });
         };
 
         recognition.start();
     }
 }
 
-function showMicrophoneBoxMobile() {
+function showMicrophoneBoxMobile(urlServlet) {
     const bodyForMicrophoneBox = document.getElementsByTagName("BODY")[0];
     const microphoneWrapper = document.querySelector("#mobile__microphone-wrapper");
 
     microphoneWrapper.classList.add("active");
     bodyForMicrophoneBox.style.overflowY = "hidden";
-    activeMicrophoneMobile();
+    activeMicrophoneMobile(urlServlet);
 }
 
 function hideMicrophoneBoxMobile() {

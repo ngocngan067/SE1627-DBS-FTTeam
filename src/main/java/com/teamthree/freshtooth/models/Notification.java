@@ -1,12 +1,13 @@
 package com.teamthree.freshtooth.models;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Notification {
+public class Notification implements Serializable {
 
     private String notifyID, userID, notifyType;
     private int notifyStatus;

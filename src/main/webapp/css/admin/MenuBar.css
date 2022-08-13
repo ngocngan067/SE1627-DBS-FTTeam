@@ -20,6 +20,10 @@
     margin-bottom: 0;
 }
 
+.navigation ul hr {
+    color: white;
+}
+
 .navigation ul li {
     position: relative;
     width: 100%;

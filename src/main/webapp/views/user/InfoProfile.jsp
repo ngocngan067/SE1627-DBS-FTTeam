@@ -48,7 +48,7 @@
                                 <div class="d-flex flex-column align-items-center text-center">
                                     <div class="avatar-photo" style="background: ${sessionScope.LOGIN_USER.colorAvatar}">
                                         <c:if test="${sessionScope.LOGIN_USER.imageAvatar != null}">
-                                            <img src="data:image/png;base64,${sessionScope.LOGIN_USER.imageAvatar}" alt="${sessionScope.LOGIN_USER.userName}">
+                                            <img src="data:image/png;base64,${sessionScope.LOGIN_USER.imageAvatar}" alt="${sessionScope.LOGIN_USER.fullName}">
                                         </c:if>
                                         <c:if test="${sessionScope.LOGIN_USER.imageAvatar == null}">
                                             <p>${sessionScope.LOGIN_USER.defaultAvatar.toUpperCase()}</p>
@@ -153,6 +153,7 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
         <!-- Script  -->
         <script src="./js/user/UserRoot.js"></script>
+        <script src="./js/user/NavBar.js"></script>
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
         <script>

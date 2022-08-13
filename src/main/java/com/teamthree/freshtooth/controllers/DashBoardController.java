@@ -1,6 +1,7 @@
 package com.teamthree.freshtooth.controllers;
 
 import com.teamthree.freshtooth.dbo.AccountFacade;
+import com.teamthree.freshtooth.dbo.BookingFacade;
 import com.teamthree.freshtooth.dbo.FeedBackFacade;
 import com.teamthree.freshtooth.dbo.ViewerFacade;
 import java.io.IOException;
@@ -8,12 +9,14 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 
 public class DashBoardController extends HttpServlet {
 
@@ -21,6 +24,7 @@ public class DashBoardController extends HttpServlet {
     private static final String STATISTIC_ACCOUNT = "STATISTIC_ACCOUNT";
     private static final String TOTAL_VIEWER = "TOTAL_VIEWER";
     private static final String TOTAL_FEEDBACK = "TOTAL_FEEDBACK";
+    private static final String TOTAL_BOOKING = "TOTAL_BOOKING";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -29,6 +33,7 @@ public class DashBoardController extends HttpServlet {
             AccountFacade accountFacade = new AccountFacade();
             ViewerFacade viewerFacade = new ViewerFacade();
             FeedBackFacade feedBackFacade = new FeedBackFacade();
+            BookingFacade bookingFacade = new BookingFacade();
 
             int countUser = accountFacade.countAccount("0");
 
@@ -38,12 +43,24 @@ public class DashBoardController extends HttpServlet {
             simpleDateFormat.applyPattern("yyyy");
             String format = simpleDateFormat.format(date);
 
-            List<Integer> statisticAccountList = accountFacade.statisticAccount(format);
+            HashMap<Integer, Integer> statisticAccountList = accountFacade.statisticAccount(format);
+            int[] statistic = new int[12];
+            List<Integer> statisticList = new ArrayList<>();
+
+            for (Integer integer : statisticAccountList.keySet()) {
+                statistic[integer - 1] = statisticAccountList.get(integer);
+            }
+
+            for (int i : statistic) {
+                statisticList.add(i);
+            }
             
-            request.setAttribute(STATISTIC_ACCOUNT, statisticAccountList);
+            JSONArray jsArray = new JSONArray(statisticList);
+            request.setAttribute(STATISTIC_ACCOUNT, jsArray.toString());
             request.setAttribute(TOTAL_USER, countUser);
             request.setAttribute(TOTAL_VIEWER, viewerFacade.getViewer());
             request.setAttribute(TOTAL_FEEDBACK, feedBackFacade.countFeedBack());
+            request.setAttribute(TOTAL_BOOKING, bookingFacade.countBooking(null, "GetTotalBooking", null));
 
             RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/admin/Dashboard.jsp");
             requestDispatcher.forward(request, response);

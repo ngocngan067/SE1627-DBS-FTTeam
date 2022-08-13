@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,6 +10,8 @@
         <link rel="icon" type="image/png" sizes="200x138" href=".././images/iconFT.png">
         <!-- LINK FONTAWESOME -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css">
+        <!-- LINK BOOTSTRAP -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- LINK CSS -->
         <link href=".././css/admin/AdminRoot.css" rel="stylesheet" type="text/css"/>
         <link href=".././css/ScrollBackToTop.css" rel="stylesheet" type="text/css"/>
@@ -38,7 +41,7 @@
                 
                 <div class="card-box">
                     <div class="card-box__content">
-                        <div class="content-numbers counter">80</div>
+                        <div class="content-numbers counter">${TOTAL_BOOKING}</div>
                         <div class="content-name">Booking</div>
                     </div>
                     <div class="card-box__icon">
@@ -72,81 +75,6 @@
             <div class="graph-chart">
                 <div class="chart-box">
                     <canvas id="ChartCustomer"></canvas>
-                </div>
-            </div>
-            
-            <!-- Order Lists -->
-            <div class="order-list">
-                <!-- Recent Order -->
-                <div class="recent-order">
-                    <div class="order-header">
-                        <h2>Recent Orders</h2>
-                        <button type="button" class="view-button">View All</button>
-                    </div>
-                    <div class="table-order">
-                        <table cellspacing="0">
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Payment</th>
-                                <th>Status</th>
-                            </tr>
-
-                            <tr>
-                                <td>1234567891</td>
-                                <td>C Program</td>
-                                <td>1000</td>
-                                <td>Paid</td>
-                                <td>
-                                    <span class="order-status order-delivered">Delivered</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>1234567891</td>
-                                <td>C Program</td>
-                                <td>1000</td>
-                                <td>Paid</td>
-                                <td>
-                                    <span class="order-status order-delivered">Delivered</span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Customers List -->
-                <div class="recent-customers">
-                    <div class="order-header">
-                        <h2>Recent Customers</h2>
-                        <button type="button" class="view-button">View All</button>
-                    </div>
-
-                    <div class="table-customers">
-                        <table cellspacing="0">
-                            <tr>
-                                <td>
-                                    <div class="customers-body">
-                                        <div class="customers-image">
-                                            <img src="./images/user.jpg" alt="">
-                                        </div>
-                                        <h4 class="customers-name">Khoa Ho</h4>
-                                    </div>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="customers-body">
-                                        <div class="customers-image">
-                                            <img src="./images/user.jpg" alt="">
-                                        </div>
-                                        <h4 class="customers-name">Khoa Ho</h4>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>

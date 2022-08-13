@@ -3,12 +3,12 @@
 <%
     AccountError signinAccountError = (AccountError) request.getAttribute("LOGIN_ACCOUNT_ERROR");
     AccountError signupAccountError = (AccountError) request.getAttribute("SIGN_UP_ACCOUNT_ERROR");
-    
+
     if (signinAccountError == null) {
         signinAccountError = new AccountError();
     }
-    
-    if(signupAccountError == null) {
+
+    if (signupAccountError == null) {
         signupAccountError = new AccountError();
     }
 %>
@@ -29,7 +29,7 @@
         <div id="preloader">
             <div class="preloader-image"></div>
         </div>
-        
+
         <div class="body_container">
             <div class="forms_container">
                 <div class="signin_signup">
@@ -61,10 +61,20 @@
                                 <label for="rememberMe">Remember me</label>
                             </div>
                             <div class="forgot_field">
-                                <a href="#">Forgot password</a>
+                                <a href="${pageContext.request.contextPath}/forgot-password">Forgot password</a>
                             </div>
                         </div>
                         <input type="submit" value="Login" class="btn solid" name="Login">
+
+<!--                        <p class="social_text">Or Sign up with social platforms</p>
+                        <div class="social_media">
+                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=https://freshtooth.herokuapp.com/login-google&response_type=code&client_id=149355289905-21ihaae2bsu9v7n1sje5r7qkbjtll4mm.apps.googleusercontent.com&approval_prompt=force" class="social_icon">
+                                <i class='bx bxl-google'></i>
+                            </a>
+                            <a href="https://www.facebook.com/dialog/oauth?client_id=630860655061944&redirect_uri=https://freshtooth.herokuapp.com/login-facebook" class="social_icon">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                        </div>-->
                     </form>
 
                     <!-- Form Sign Up -->
@@ -110,6 +120,16 @@
                         </div>
 
                         <input type="submit" value="SignUp" class="btn solid">
+
+<!--                        <p class="social_text">Or Sign in with social platforms</p>
+                        <div class="social_media">
+                            <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=https://freshtooth.herokuapp.com/login-google&response_type=code&client_id=149355289905-21ihaae2bsu9v7n1sje5r7qkbjtll4mm.apps.googleusercontent.com&approval_prompt=force" class="social_icon">
+                                <i class='bx bxl-google'></i>
+                            </a>
+                            <a href="https://www.facebook.com/dialog/oauth?client_id=630860655061944&redirect_uri=https://freshtooth.herokuapp.com/login-facebook" class="social_icon">
+                                <i class='bx bxl-facebook'></i>
+                            </a>
+                        </div>-->
                     </form>
 
                 </div>
@@ -119,8 +139,7 @@
                     <div class="content">
                         <h3>Do not have an account ?</h3>
                         <p>
-                            Horizon is the leading website selling computer components in Vietnam. Quickly create an account
-                            and let's explore Horizon!
+                            Create an account to explore more about Fresh Tooth!
                         </p>
                         <button onclick="ClearDataInSignIn()" class="btn transparent" id="sign_up_btn">Sign up</button>
                     </div>
@@ -131,7 +150,7 @@
                     <div class="content">
                         <h3>Already have an account ?</h3>
                         <p>
-                            Sign in and shopping with Horizon! Let's Go!
+                            Sign in and visit Fresh Tooth Website! Let's Go!
                         </p>
                         <button onclick="ClearDataInSignUp()" class="btn transparent" id="sign_in_btn">Sign in</button>
                     </div>
@@ -139,10 +158,10 @@
                 </div>
             </div>
         </div>
-                            
+
         <script src="./js/Login.js"></script>
         <script>
-            CheckURL("${sessionScope.VALUE_LOGIN}");
+                            CheckURL("${sessionScope.VALUE_LOGIN}");
         </script>
     </body>
 </html>

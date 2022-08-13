@@ -1,11 +1,18 @@
+<%@page import="com.teamthree.freshtooth.models.AccountError"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+    AccountError accountError = (AccountError) request.getAttribute("CHANGE_PASSWORD_ERROR");
+    if(accountError == null) {
+        accountError = new AccountError();
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Fresh Tooth | About Us</title>
+        <title>Change Password | ${sessionScope.LOGIN_USER.fullName}</title>
         <!-- TẠO ICON TRÊN THANH WEB -->
         <link rel="icon" href="./images/iconFT.png" type="image/png" sizes="200x138" />
         <!-- LINK BOOTSTRAP 5 -->
@@ -51,7 +58,7 @@
                     <div class="row">
                         <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="setting-form">
-                                <form action="${pageContext.request.contextPath}/edit-profile" method="POST">
+                                <form action="${pageContext.request.contextPath}/change-password" method="POST">
                                     <div>
                                         <div class="row">
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -66,7 +73,7 @@
                                                         <i class='bx bx-error-circle' id="oldPassword-icon-error"></i>
                                                     </div>
                                                     <div class="message">
-                                                        <span class="error-message" id="oldPassword-error"></span>
+                                                        <span class="error-message" id="oldPassword-error"><%=accountError.getPasswordError()%></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,7 +95,7 @@
                                                     </div>
                                                     <div class="error-text"></div>
                                                     <div class="message">
-                                                        <span class="error-message" id="newPassword-error"></span>
+                                                        <span class="error-message" id="newPassword-error"><%=accountError.getNewPasswordError()%></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -104,7 +111,7 @@
                                                         <i class='bx bx-error-circle' id="confirmPassword-icon-error"></i>
                                                     </div>
                                                     <div class="message">
-                                                        <span class="error-message" id="confirmPassword-error"></span>
+                                                        <span class="error-message" id="confirmPassword-error"><%=accountError.getConfirmPasswordError()%></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -149,5 +156,9 @@
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
         <script src="./js/user/ChangePassword.js"></script>
+        <script src="./js/user/NavBar.js"></script>
+        <script>
+            setActiveMenuBar();
+        </script>
     </body>
 </html>

@@ -70,7 +70,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </div>
                                 <div class="info-content">
-                                    <a href="#">Service</a>
+                                    <a href="${pageContext.request.contextPath}/service">Service</a>
                                 </div>
                             </li>
                             <li class="hover-link">
@@ -86,7 +86,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </div>
                                 <div class="info-content">
-                                    <a href="#">Booking</a>
+                                    <a href="${pageContext.request.contextPath}/booking">Booking</a>
                                 </div>
                             </li>
                             <li class="hover-link">
@@ -128,15 +128,7 @@
                                     <i class="fas fa-chevron-right"></i>
                                 </div>
                                 <div class="info-content">
-                                    <a href="#">Privacy Policy</a>
-                                </div>
-                            </li>
-                            <li class="hover-link">
-                                <div class="info-icon-arrow">
-                                    <i class="fas fa-chevron-right"></i>
-                                </div>
-                                <div class="info-content">
-                                    <a href="#">Support</a>
+                                    <a href="${pageContext.request.contextPath}/policy">Privacy Policy</a>
                                 </div>
                             </li>
                         </ul>
@@ -185,7 +177,7 @@
                             <script>document.write(new Date().getFullYear());</script> Existing Fresh Tooth
                             website.
                             All Rights Reserved | Design by <a
-                                href="https://www.facebook.com/profile.php?id=100063891461203"
+                                href="https://www.facebook.com/FreshTooth.FPTU"
                                 target="_blank">Fresh Tooth Team</a>
                         </p>
                     </div>

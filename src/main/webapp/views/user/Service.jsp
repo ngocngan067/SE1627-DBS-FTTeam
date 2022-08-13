@@ -1,4 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    int totalNews = 0;
+    if (request.getAttribute("TOTAL_SERVICE_LIST") != null) {
+        totalNews = (int) request.getAttribute("TOTAL_SERVICE_LIST");
+    }
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,8 +23,6 @@
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <!-- UN ICONS -->
         <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-        <!-- Malihu Custom Scrollbar -->
-        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
         <!-- AOS  -->
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <!-- LINK CSS -->
@@ -37,6 +42,58 @@
             <jsp:include page="../../layouts/user/NavBar.jsp"></jsp:include>
         </header>
         
+        <!-- Hero Start -->
+        <div class="container-fluid bg-primary py-5 hero-header mb-5" style="background: linear-gradient(rgba(9, 30, 62, .85), rgba(9, 30, 62, .85)), url(./images/carousel-1.jpg) center center no-repeat;">
+            <div class="row py-3">
+                <div class="col-12 text-center">
+                    <h1 class="display-3 text-white animated zoomIn">Services</h1>
+                </div>
+            </div>
+        </div>
+        <!-- Hero End -->
+
+
+        <!-- Service Start -->
+        <div class="container-fluid py-5">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-7">
+                        <div class="section-title mb-5 animate__animated animate__fadeInUp">
+                            <h5 class="position-relative d-inline-block text-primary text-uppercase">Our Services</h5>
+                            <h1 class="display-5 mb-0">Cosmetic Dentistry</h1>
+                            <p>Cosmetic Dentistry is advanced dentistry aimed at creating positive changes to your teeth and
+                                your smile.
+                                Sparkle your smile with cosmetic procedures, including teeth whitening, etc…</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="row g-5" id="return-list">
+                            <c:forEach items="${SERVICE_LIST}" var="services">
+                                <div class="col-md-4 service-item service-amount" data-aos="fade-up" data-aos-duration="1000">
+                                    <a href="${pageContext.request.contextPath}/service-detail?sid=${services.serviceID}">
+                                        <div class="rounded-top overflow-hidden service-image">
+                                            <img class="img-fluid" src="data:image/png;base64,${services.imageService}" alt="${services.serviceName}">
+                                        </div>
+                                        <div class="position-relative bg-light rounded-bottom text-center p-4">
+                                            <h5 class="m-0">${services.serviceName}</h5>
+                                        </div>
+                                    </a>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <div class="row g-5">
+                            <div class="col-12 pt-4">
+                                <div class="view-more">
+                                    <button onclick="loadMore('<%=totalNews%>', '${pageContext.request.contextPath}/service')" class="button-view">Load more</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Service End -->
+        
         <jsp:include page="../../layouts/user/FooterPage.jsp"></jsp:include>
         <jsp:include page="../../layouts/user/SupportOnline.jsp"></jsp:include>
         
@@ -47,12 +104,12 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <!-- AOS  -->
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <!-- Malihu Custom Scrollbar -->
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
         <!-- Script  -->
         <script src="./js/user/UserRoot.js"></script>
+        <script src="./js/user/NavBar.js"></script>
         <script src="./js/ScrollBackToTop.js"></script>
         <script src="./js/CheckNetworkStatus.js"></script>
+        <script src="./js/user/Service.js"></script>
         <script>
             setActiveMenuBar();
         </script>

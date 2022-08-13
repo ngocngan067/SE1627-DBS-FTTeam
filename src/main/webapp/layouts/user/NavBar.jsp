@@ -16,63 +16,18 @@
             </li>
 
             <li class="nav-item dropdown" id="demo1">
-                <a class="nav-link" href="">Services</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/service">Services</a>
                 <ul class="dropdown-content">
-                    <li class="dropdown-content__item">
-                        <a class="nameSer" href="">Rehibilitate</a>
-                        <i class='bx bx-chevron-right'></i>
-                        <ul class="sub-menu pt-menu">
-                            <li>
-                                <a href="">Dental Implant</a>
-                            </li>
-                            <li>
-                                <a href="">Implant dentures</a>
-                            </li>
-                            <li>
-                                <a href="">Porcelain tooth bridge</a>
-                            </li>
-                            <li>
-                                <a href="">Removable dentures</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown-content__item">
-                        <a class="nameSer" href="">Treatment</a>
-                        <i class='bx bx-chevron-right'></i>
-                        <ul class="sub-menu dt-menu">
-                            <li>
-                                <a href="">Method of value</a>
-                            </li>
-                            <li>
-                                <a href="">Scrape tartar</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown-content__item">
-                        <a class="nameSer" href="">Improve</a>
-                        <i class='bx bx-chevron-right'></i>
-                        <ul class="sub-menu ct-menu">
-                            <li><a href="">Metal braces</a></li>
-                            <li><a href="">Invisalign Braces</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown-content__item">
-                        <a class="nameSer" href="">Beauty</a>
-                        <i class='bx bx-chevron-right'></i>
-                        <ul class="sub-menu tm-menu">
-                            <li><a href="">Porcelain veneers</a></li>
-                            <li><a href="">Teeth whitening</a></li>
-                            <li><a href="">Porcelain Veneers</a></li>
-                        </ul>
-                    </li>
+                    <c:forEach items="${sessionScope.SERVICE_TYPE_LIST}" var="serviceType">
+                        <li class="dropdown-content__item">
+                            <a class="nameSer" href="${pageContext.request.contextPath}/service?type=${serviceType.serviceTypeID}">${serviceType.serviceTypeName}</a>
+                        </li>
+                    </c:forEach>
                 </ul>
             </li>
 
             <li class="nav-item kno">
-                <a class="nav-link" href="${pageContext.request.contextPath}/news">Knowledges</a>
+                <a class="nav-link" href="${pageContext.request.contextPath}/news">Knowledge</a>
             </li>
 
             <li class="nav-item">
@@ -85,67 +40,69 @@
         </ul>
     </div>
 
-    <div class="header__tool">
-        <div id="searchBox">
-            <div class="button-search">
-                <i class="btn-search fa-solid fa-magnifying-glass"></i>
+    <c:if test="${SERVICE_LIST != null}">
+        <div class="header__tool">
+            <div id="searchBox">
+                <div class="button-search">
+                    <i class="btn-search fa-solid fa-magnifying-glass"></i>
+                </div>
+                <input oninput="searchByName(this, '${pageContext.request.contextPath}/service')" onfocusout="showLoadMoreButton()" class="search-place" type="text" placeholder="Search...">
+                <button onclick="showMicrophoneBox('${pageContext.request.contextPath}/service')" type="button" class="button-mic">
+                    <svg class="goxjub" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#4285f4"
+                          d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z">
+                    </path>
+                    <path fill="#34a853" d="m11 18.08h2v3.92h-2z"></path>
+                    <path fill="#fbbc04"
+                          d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z">
+                    </path>
+                    <path fill="#ea4335"
+                          d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z">
+                    </path>
+                    </svg>
+                </button>
             </div>
-            <input class="search-place" type="text" placeholder="Search service">
-            <button onclick="showMicrophoneBox()" type="button" class="button-mic">
-                <svg class="goxjub" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#4285f4"
-                      d="m12 15c1.66 0 3-1.31 3-2.97v-7.02c0-1.66-1.34-3.01-3-3.01s-3 1.34-3 3.01v7.02c0 1.66 1.34 2.97 3 2.97z">
-                </path>
-                <path fill="#34a853" d="m11 18.08h2v3.92h-2z"></path>
-                <path fill="#fbbc04"
-                      d="m7.05 16.87c-1.27-1.33-2.05-2.83-2.05-4.87h2c0 1.45 0.56 2.42 1.47 3.38v0.32l-1.15 1.18z">
-                </path>
-                <path fill="#ea4335"
-                      d="m12 16.93a4.97 5.25 0 0 1 -3.54 -1.55l-1.41 1.49c1.26 1.34 3.02 2.13 4.95 2.13 3.87 0 6.99-2.92 6.99-7h-1.99c0 2.92-2.24 4.93-5 4.93z">
-                </path>
-                </svg>
-            </button>
-        </div>
-        <div class="microphone-wrapper" id="microphone-wrapper">
-            <div class="microphone-box" role="dialog" tabindex="-1">
-                <div class="microphone-container" tabindex="-1">
-                    <div class="microphone-header">
-                        <div class="microphone-header__text">
-                            <div id="microphone-header__prompt" class="microphone-header__prompt"></div>
-                        </div>
-                        <div class="microphone-exit__button">
-                            <button onclick="hideMicrophoneBox()" class="icon-exit-button">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="microphone-body">
-                        <div id="microphone-body-text" class="microphone-body-text"></div>
-                    </div>
-                    <div class="microphone-footer-button">
-                        <div onclick="activeMicrophone()" class="microphone-footer-container">
-                            <div class="microphone-pulse"></div>
-                            <div class="microphone-levels"></div>
-                            <div class="microphone-circle" role="button" tabindex="0">
-                                <i class="fa-solid fa-microphone-lines"></i>
+            <div class="microphone-wrapper" id="microphone-wrapper">
+                <div class="microphone-box" role="dialog" tabindex="-1">
+                    <div class="microphone-container" tabindex="-1">
+                        <div class="microphone-header">
+                            <div class="microphone-header__text">
+                                <div id="microphone-header__prompt" class="microphone-header__prompt"></div>
+                            </div>
+                            <div class="microphone-exit__button">
+                                <button onclick="hideMicrophoneBox()" class="icon-exit-button">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
                             </div>
                         </div>
-                        <div id="microphone-footer-label" class="microphone-footer-label"></div>
+                        <div class="microphone-body">
+                            <div id="microphone-body-text" class="microphone-body-text"></div>
+                        </div>
+                        <div class="microphone-footer-button">
+                            <div onclick="activeMicrophone('${pageContext.request.contextPath}/service')" class="microphone-footer-container">
+                                <div class="microphone-pulse"></div>
+                                <div class="microphone-levels"></div>
+                                <div class="microphone-circle" role="button" tabindex="0">
+                                    <i class="fa-solid fa-microphone-lines"></i>
+                                </div>
+                            </div>
+                            <div id="microphone-footer-label" class="microphone-footer-label"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </c:if>
 
-    <div class="header__notify">
-        <div class="notification has-notification">
+    <div class="header__notify" style="${SERVICE_LIST != null ? "" : (LOGIN_USER != null ? "transform: translateX(170px);" : "transform: translateX(130px);")}">
+        <div onclick="ReadNotification('${sessionScope.LOGIN_USER.userID}', '${pageContext.request.contextPath}/notification');" class="notification has-notification">
             <div style="position: relative;">
                 <div class="bell" id="bell">
                     <i class="fas fa-bell"></i>
                 </div>
                 <c:if test="${sessionScope.LOGIN_USER != null}">
                     <c:if test="${sessionScope.NOTIFICATION_LIST != null}">
-                        <div class="bell-number" id="bell-number">${sessionScope.COUNT_NOTIFICATION_NOT_READ}</div>
+                        <div class="bell-number" id="bell-number">${sessionScope.COUNT_NOTIFICATION_NOT_READ != null ? sessionScope.COUNT_NOTIFICATION_NOT_READ : 0}</div>
                     </c:if>
                 </c:if>
             </div>
@@ -163,7 +120,7 @@
                         </div>
                     </div>
                     <div class="notification-footer">
-                        <button type="button" onclick="window.location.href = '${pageContext.request.contextPath}/login';" class="footer-registration">Registration</button>
+                        <button type="button" onclick="window.location.href = '${pageContext.request.contextPath}/register';" class="footer-registration">Registration</button>
                         <button type="button" onclick="window.location.href = '${pageContext.request.contextPath}/login';" class="footer-login">Login</button>
                     </div>
                 </c:if>
@@ -227,7 +184,7 @@
                         </li>
                         <li>
                             <i class="uil uil-history"></i>
-                            <a href="#">History Booking</a>
+                            <a href="${pageContext.request.contextPath}/history-booking-all">History Booking</a>
                         </li>
                         <li>
                             <i class="uil uil-edit"></i>
@@ -265,7 +222,7 @@
                 <div class="button-search">
                     <i class="btn-search fa-solid fa-magnifying-glass"></i>
                 </div>
-                <input class="search-place" type="text" placeholder="Search service">
+                <input oninput="searchByName(this, '${pageContext.request.contextPath}/service')" onfocusout="showLoadMoreButton()" class="search-place" type="text" placeholder="Search service">
                 <button onclick="showMicrophoneBox()" type="button" class="button-mic">
                     <svg class="goxjub" focusable="false" viewBox="0 0 24 24"
                          xmlns="http://www.w3.org/2000/svg">
@@ -297,8 +254,8 @@
             <div class="col-md-1 col-sm-1 col-1 button-search">
                 <i class="btn-search fa-solid fa-magnifying-glass"></i>
             </div>
-            <input class="col-md-9 col-sm-9 col-9 search-place" type="text" placeholder="Search service">
-            <button type="button" onclick="showMicrophoneBoxMobile()"
+            <input oninput="searchByName(this, '${pageContext.request.contextPath}/service')" onfocusout="showLoadMoreButton()" class="col-md-9 col-sm-9 col-9 search-place" type="text" placeholder="Search service">
+            <button type="button" onclick="showMicrophoneBoxMobile('${pageContext.request.contextPath}/service')"
                     class="col-md-1 col-sm-1 col-1 button-mic">
                 <svg class="goxjub" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#4285f4"
@@ -334,7 +291,7 @@
                         <div class="mobile-microphone-body-text" id="mobile-microphone-body-text"></div>
                     </div>
                     <div class="mobile__microphone-footer-button">
-                        <div onclick="activeMicrophoneMobile()" class="mobile__microphone-footer-container">
+                        <div onclick="activeMicrophoneMobile('${pageContext.request.contextPath}/service')" class="mobile__microphone-footer-container">
                             <div class="mobile__microphone-pulse"></div>
                             <div class="mobile__microphone-levels"></div>
                             <div class="mobile__microphone-circle" role="button" tabindex="0">
@@ -384,9 +341,16 @@
         <ul class="user__mobile-list">
             <c:if test="${sessionScope.LOGIN_USER != null}">
                 <li class="user__mobile-item">
-                    <a href="#" class="user__mobile-link">
+                    <a href="${pageContext.request.contextPath}/info-profile" class="user__mobile-link">
                         <i class="fa-solid fa-user"></i>
                         <span class="user__mobile-name">My Profile</span>
+                    </a>
+                </li>
+                
+                <li class="user__mobile-item">
+                    <a href="${pageContext.request.contextPath}/history-booking-all" class="user__mobile-link">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                        <span class="user__mobile-name">History Booking</span>
                     </a>
                 </li>
 
@@ -413,21 +377,21 @@
             </li>
 
             <li class="user__mobile-item">
-                <a href="#" class="user__mobile-link">
+                <a href="${pageContext.request.contextPath}/service" class="user__mobile-link">
                     <i class="fa-solid fa-wrench"></i>
                     <span class="user__mobile-name">Services</span>
                 </a>
             </li>
 
             <li class="user__mobile-item">
-                <a href="#" class="user__mobile-link">
+                <a href="${pageContext.request.contextPath}/news" class="user__mobile-link">
                     <i class="fa-solid fa-brain"></i>
-                    <span class="user__mobile-name">Knowledges</span>
+                    <span class="user__mobile-name">Knowledge</span>
                 </a>
             </li>
 
             <li class="user__mobile-item">
-                <a href="#" class="user__mobile-link">
+                <a href="${pageContext.request.contextPath}/booking" class="user__mobile-link">
                     <i class="fa-solid fa-calendar-days"></i>
                     <span class="user__mobile-name">Booking</span>
                 </a>
@@ -448,7 +412,7 @@
                     </a>
                 </li>
             </c:if>
-                
+
             <c:if test="${sessionScope.LOGIN_USER != null}">
                 <li class="user__mobile-item">
                     <a href="${pageContext.request.contextPath}/logout" class="user__mobile-link">

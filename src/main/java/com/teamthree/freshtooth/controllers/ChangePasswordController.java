@@ -16,14 +16,26 @@ import org.apache.commons.codec.digest.DigestUtils;
 public class ChangePasswordController extends HttpServlet {
 
     private static final String LOGIN_USER = "LOGIN_USER";
+    private static final String LOGIN_DENTIST = "LOGIN_DENTIST";
     private static final String CHANGE_PASSWORD_ERROR = "CHANGE_PASSWORD_ERROR";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/user/ChangePassword.jsp");
-        requestDispatcher.forward(request, response);
+        try {
+            String urlServlet = request.getServletPath();
+
+            if (urlServlet.equals("/change-password")) {
+                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/user/ChangePassword.jsp");
+                requestDispatcher.forward(request, response);
+            } else {
+                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/dentist/ChangePassword.jsp");
+                requestDispatcher.forward(request, response);
+            }
+        } catch (IOException | ServletException e) {
+            response.sendRedirect(request.getContextPath() + "/error");
+        }
     }
 
     @Override
@@ -32,18 +44,23 @@ public class ChangePasswordController extends HttpServlet {
 
         try {
             HttpSession session = request.getSession();
-            Account loginUser = (Account) session.getAttribute(LOGIN_USER);
+            String urlServlet = request.getServletPath();
+            Account account, loginUser;
+            AccountError accountError = new AccountError();
+            AccountFacade accountFacade = new AccountFacade();
+            boolean hasError = false;
+
+            if (urlServlet.equals("/change-password")) {
+                loginUser = (Account) session.getAttribute(LOGIN_USER);
+            } else {
+                loginUser = (Account) session.getAttribute(LOGIN_DENTIST);
+            }
 
             String oldPassword = request.getParameter("oldPassword");
             String newPassword = request.getParameter("newPassword");
             String confirmPassword = request.getParameter("confirmPassword");
             String hashOldPassword = DigestUtils.md5Hex(oldPassword);
             String hashNewPassword = DigestUtils.md5Hex(newPassword);
-
-            Account account;
-            AccountError accountError = new AccountError();
-            AccountFacade accountFacade = new AccountFacade();
-            boolean hasError = false;
 
             if (oldPassword.equals("") && newPassword.equals("") && confirmPassword.equals("")) {
                 hasError = true;
@@ -70,8 +87,14 @@ public class ChangePasswordController extends HttpServlet {
             if (hasError) {
                 request.setAttribute(CHANGE_PASSWORD_ERROR, accountError);
 
-                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/user/ChangePassword.jsp");
-                requestDispatcher.forward(request, response);
+                if (urlServlet.equals("/change-password")) {
+                    RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/user/ChangePassword.jsp");
+                    requestDispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/views/dentist/ChangePassword.jsp");
+                    requestDispatcher.forward(request, response);
+                }
+
             } else {
                 account = new Account();
                 account.setUserPassword(hashNewPassword);
@@ -79,13 +102,23 @@ public class ChangePasswordController extends HttpServlet {
 
                 boolean checkChangePassword = accountFacade.updateAccount(account, "ChangePassword");
                 if (checkChangePassword) {
-                    Account getAccount = accountFacade.checkAccount(account.getUserEmail());
-                    session.setAttribute(LOGIN_USER, getAccount);
-                    session.setMaxInactiveInterval(500);
+                    Account getAccount = accountFacade.checkAccount(account.getUserEmail(), "Login");
+
+                    if (urlServlet.equals("/change-password")) {
+                        session.setAttribute(LOGIN_USER, getAccount);
+                    } else {
+                        session.setAttribute(LOGIN_DENTIST, getAccount);
+                    }
                 }
 
-                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/info-profile");
-                requestDispatcher.forward(request, response);
+                if (urlServlet.equals("/change-password")) {
+                    RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/info-profile");
+                    requestDispatcher.forward(request, response);
+                } else {
+                    RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/dentist/info-profile");
+                    requestDispatcher.forward(request, response);
+                }
+
             }
         } catch (IOException | SQLException | ServletException e) {
             response.sendRedirect(request.getContextPath() + "/error");

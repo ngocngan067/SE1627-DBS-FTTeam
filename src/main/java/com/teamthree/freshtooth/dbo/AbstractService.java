@@ -10,7 +10,7 @@ public abstract class AbstractService<T> {
 
     private Connection connection;
 
-    protected abstract List<T> getServices(Connection connection, Object value, Object action) throws SQLException;
+    protected abstract List<T> getServices(Connection connection, Object typeID, Object value, Object action) throws SQLException;
 
     protected abstract T getServicesDetail(Connection connection, Object serviceID) throws SQLException;
 
@@ -23,18 +23,19 @@ public abstract class AbstractService<T> {
     /**
      * Get all services
      *
+     * @param typeID
      * @param value
      * @param action
      * @return
      * @throws SQLException
      */
-    public List<T> getServices(Object value, Object action) throws SQLException {
+    public List<T> getServices(Object typeID, Object value, Object action) throws SQLException {
 
         List<T> list = new ArrayList<>();
 
         try {
             connection = DBUtils.makeConnection();
-            list = getServices(connection, value, action);
+            list = getServices(connection, typeID, value, action);
         } finally {
             connection.close();
         }

@@ -107,10 +107,9 @@ public class EditProfileController extends HttpServlet {
 
                 boolean checkAddProduct = accountFacade.updateAccount(account, "EditProfile");
                 if (checkAddProduct) {
-                    session.setAttribute(LOGIN_USER, accountFacade.checkAccount(email));
+                    session.setAttribute(LOGIN_USER, accountFacade.checkAccount(email, "Login"));
                 }
-                RequestDispatcher requestDispatcher = this.getServletContext().getRequestDispatcher("/info-profile");
-                requestDispatcher.forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/info-profile");
             }
 
         } catch (IOException | SQLException | ServletException e) {

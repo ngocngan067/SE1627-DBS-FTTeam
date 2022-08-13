@@ -1,9 +1,86 @@
 var app = angular.module("myapp", []);
 
-function ManageUserAPI(APIJson) {
+function ManageUserAPI(urlServlet, APIJson) {
     app.controller("viewCril", function (Excel, $timeout, $scope) {
         $scope.test = {};
         $scope.index = -1;
+
+        // disable
+        $scope.disable = function (id, action) {
+            if (action == "Active") {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you want to active this account?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, active it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: urlServlet,
+                            type: "get",
+                            data: {
+                                UserID: id,
+                                Action: action
+                            },
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+            } else if (action == "Disabled") {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you want to disabled this account?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, disabled it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: urlServlet,
+                            type: "get",
+                            data: {
+                                UserID: id,
+                                Action: action
+                            },
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+            } else if (action == "UnDisabled") {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Do you want to unDisabled this account?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, unDisabled it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: urlServlet,
+                            type: "get",
+                            data: {
+                                UserID: id,
+                                Action: action
+                            },
+                            success: function () {
+                                location.reload();
+                            }
+                        });
+                    }
+                });
+            }
+        };
 
         $scope.listUser = APIJson;
 
